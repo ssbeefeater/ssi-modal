@@ -1,7 +1,7 @@
 # ssi-modal
 ssi-modal is the most flexible and powerful modal window.
 
-###final files are in dist/ssi-modal folder
+final files are in dist/ssi-modal folder
 
 
 ###To test it:
