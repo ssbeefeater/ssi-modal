@@ -1,0 +1,951 @@
+
+//main modal starts
+
+$zIndex: 1500;
+///This is the main color of the modal (white)
+$mainBackgroundColor: #FFFFFF;
+$stackModalSmallWidth: 300;
+$stackModalSizeDifference: 100;
+@import 'sprite';
+@function getSize($times) {
+  @return ($stackModalSmallWidth + $stackModalSizeDifference * $times)+px
+}
+
+@mixin smallMedia {
+  @media only screen and (max-width: 400px) {
+    .ssi-modalTitle {
+      font-size: 18px;
+    }
+    @content;
+  }
+}
+
+@mixin mediumMedia {
+  @media only screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin largeMedia {
+  @media only screen and (max-width: 900px) {
+    @content;
+
+  }
+}
+
+body.ssi-modalOpen {
+  overflow: hidden;
+}
+
+.ssi-backdrop {
+  position: fixed;
+  overflow: hidden;
+  z-index: $zIndex;
+  top: 0;
+  left: 0;
+  background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.50);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#B3000000', endColorstr='#B3000000'); /* IE */
+}
+
+.ssi-modalOuter {
+  position: fixed;
+  z-index: $zIndex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  &.ssi-fullScreen {
+    .ssi-modalWrapper {
+      width: 100% !important;
+      margin: 0;
+      border-radius: 0;
+      height: 100%;
+    }
+    .ssi-modalWindow {
+      overflow: auto;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+      min-height: 100%;
+      .ssi-modalContent {
+        padding-bottom: 0;
+      }
+      .ssi-buttons {
+        position: fixed;
+        width: 100%;
+      }
+      .ssi-displayIcon {
+        @extend .icon;
+        @include sprite($exitFs);
+        &:hover {
+          @include sprite($exitFs-h);
+        }
+      }
+    }
+  }
+}
+
+.ssi-center {
+  display: table;
+  .ssi-modalWrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .ssi-modalWindow {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+.ssi-modalWrapper {
+  position: relative;
+  margin: 40px auto;
+  z-index: $zIndex+1;
+
+  &.full {
+    width: 100%;
+  }
+  &.auto, .ssi-modalWindow.auto {
+    display: table;
+    width: auto;
+  }
+  &.large, .ssi-modalWindow.large {
+    width: 80%;
+    @include largeMedia {
+      width: 85%;
+    }
+    @include mediumMedia {
+      width: 95%;
+    }
+    @include smallMedia {
+      width: 98%;
+    }
+  }
+
+  &.mediumToLarge, .ssi-modalWindow.mediumToLarge {
+    width: 70%;
+    @include largeMedia {
+      width: 80%;
+    }
+    @include mediumMedia {
+      width: 90%;
+    }
+    @include smallMedia {
+      width: 95%;
+    }
+  }
+
+  &.medium, .ssi-modalWindow.medium {
+    width: 62%;
+    @include largeMedia {
+      width: 72%;
+    }
+    @include mediumMedia {
+      width: 82%;
+    }
+    @include smallMedia {
+      width: 95%;
+
+    }
+  }
+
+  &.smallToMedium, .ssi-modalWindow.smallToMedium {
+    width: 50%;
+    @include largeMedia {
+      width: 70%;
+    }
+    @include mediumMedia {
+      width: 80%;
+    }
+    @include smallMedia {
+      width: 90%;
+    }
+  }
+
+  &.small, .ssi-modalWindow.small {
+    width: 45%;
+    @include largeMedia {
+      width: 65%;
+    }
+    @include mediumMedia {
+      width: 75%;
+    }
+    @include smallMedia {
+      width: 85%;
+    }
+  }
+
+  &.dialog, .ssi-modalWindow.dialog {
+    width: 30%;
+    @include largeMedia {
+      width: 50%;
+    }
+    @include mediumMedia {
+      width: 60%;
+    }
+    @include smallMedia {
+      width: 80%;
+    }
+  }
+
+}
+
+.ssi-modalWindow {
+  width: 100%;
+  background: $mainBackgroundColor;
+  border: 1px solid #c3c3c3;
+  position: relative;
+  border-radius: 8px;
+  padding: 18px 6px 5px 6px;
+}
+
+.ssi-topIcons {
+  padding-left: 5px;
+  font-weight: 600;
+  position: absolute;
+  top: 0;
+  line-height: 25px;
+  right: 0;
+  z-index: 1;
+  a {
+    float: left;
+    color: #8c8c8c;
+    font-size: 30px;
+    text-decoration: none;
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background: no-repeat center;
+    background-color:inherit;
+    &:hover {
+      color: #265067;
+    }
+  }
+  .ssi-displayIcon {
+    @extend .icon;
+    @include sprite($fullscreen);
+    &:hover {
+      @include sprite($fullscreen-h);
+    }
+  }
+  .ssi-closeIcon {
+    @extend .icon;
+    @include sprite($Del);
+    &:hover {
+      @include sprite($Del-h);
+    }
+  }
+}
+
+.ssi-modalTitle {
+  padding: 0 0 5px 15px;
+  font: italic 600 25px Georgia, serif;
+  border-bottom: 1px solid #dddddd;
+  .ssi-displayTime {
+    font-size: 18px;
+  }
+}
+
+.ssi-modalContent {
+  min-height: 50px;
+  margin-top: 0px;
+  padding: 5px 15px 10px 15px;
+  width: 100%;
+  z-index: $zIndex+1;
+
+  &:after {
+    content:" ";
+    display:table;
+    clear:both;
+  }
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-scrollbar:vertical {
+    width: 15px;
+  }
+
+  &::-webkit-scrollbar:horizontal {
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+  }
+  &.ssi-overflow {
+    overflow: auto;
+  }
+
+}
+
+.ssi-buttons {
+  position: relative;
+  bottom: 0;
+  padding: 5px 5px 1px 5px;
+  border-top: 1px solid #dddddd;
+
+  &:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+  }
+  .ssi-leftButtons {
+    float: left;
+  }
+  .ssi-rightButtons {
+    float: right;
+  }
+  .ssi-modalBtn {
+    margin: 2px;
+    //  padding: 7px;
+  }
+  .ssi-countDown {
+    color: #d1d1d1;
+    font-size: 12px;
+    margin-left: 5px;
+  }
+}
+
+.ssi-modalPositioned {
+  overflow: visible;
+
+  height: 0;
+  &.right {
+    .ssi-modalWrapper {
+      float: right;
+      .ssi-modalWindow {
+        float: right;
+      }
+    }
+  }
+  &.left {
+    .ssi-modalWrapper {
+      float: left;
+      &:after {
+        content: " ";
+        display: block;
+        height: 0;
+        clear: both;
+      }
+    }
+    .ssi-modalWindow {
+      float: left;
+    }
+  }
+  &.bottom {
+    top: auto;
+    height: auto;
+    bottom: 0;
+    .ssi-modalWrapper {
+      height: auto;
+    }
+  }
+  &.top {
+    top: 0;
+  }
+  &.center {
+    .ssi-modalWrapper {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      .ssi-modalWindow {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+    }
+  }
+  .ssi-modalWrapper {
+    margin: 15px 3px;
+    padding: 0;
+    height: 0;
+    .ssi-modalWindow {
+      margin: 10px 0;
+      clear: both;
+      z-index: $zIndex;
+    }
+  }
+  &.ssi-stack {
+    pointer-events: none;
+    z-index: 3000;
+    &.center{
+      .ssi-modalWrapper .ssi-modalWindow {
+        margin: 4px;
+      }
+    }
+    .ssi-modalWrapper {
+      width: 100%;
+      margin: 0;
+      .ssi-modalWindow:first-child {
+        margin-top: 10px;
+      }
+
+      .ssi-modalWindow {
+        pointer-events: auto;
+        margin: 2px 7px;
+        -webkit-box-shadow: -1px 1px 28px -2px rgba(161, 150, 161, 1);
+        -moz-box-shadow: -1px 1px 28px -2px rgba(161, 150, 161, 1);
+        box-shadow: -1px 1px 28px -2px rgba(161, 150, 161, 1);
+        &.ssi-smoothSlide {
+          visibility: hidden;
+          display: block !important;
+        }
+
+        &.full {
+          width: 99.9%;
+          margin: 1px 1px;
+          @include smallMedia {
+            width: 99.5%;
+          }
+        }
+        &.auto{
+        }
+        &.large {
+          width: getSize(5);
+          @include largeMedia {
+            width: 90%;
+          }
+          @include mediumMedia {
+            width: 85%;
+          }
+          @include smallMedia {
+            width: 99.5%;
+            margin: 1px 1px;
+          }
+        }
+
+        &.mediumToLarge {
+          width: getSize(4);
+          @include largeMedia {
+            width: 85%;
+          }
+          @include mediumMedia {
+            width: 75%;
+          }
+          @include smallMedia {
+            width: 80%;
+          }
+        }
+
+        &.medium {
+          width: getSize(3);
+          @include largeMedia {
+            width: 80%;
+          }
+          @include mediumMedia {
+            width: 75%;
+          }
+          @include smallMedia {
+            width: 80%;
+          }
+        }
+
+        &.smallToMedium {
+          width: getSize(2);
+          @include mediumMedia {
+            width: 60%;
+          }
+          @include smallMedia {
+            width: 55%;
+          }
+        }
+
+        &.small {
+          width: getSize(1);
+          @include mediumMedia {
+            width: 60%;
+          }
+          @include smallMedia {
+            width: 55%;
+          }
+        }
+
+        &.dialog {
+          width: getSize(0);
+          @include mediumMedia {
+            width: 45%;
+          }
+          @include smallMedia {
+            width: 55%;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.ssi-hover {
+  cursor: pointer;
+  &:hover {
+    -webkit-box-shadow: -1px 1px 17px 0px rgba(117, 113, 117, 1);
+    -moz-box-shadow: -1px 1px 17px 0px rgba(117, 113, 117, 1);
+    box-shadow: -1px 1px 17px 0px rgba(117, 113, 117, 1);
+  }
+}
+
+.ssi-hidden {
+  display: none;
+}
+
+.ssi-borderOut {
+  border: none !important;
+}
+//-----------------------------------------------------
+//@author http://webdesignerhut.com/5-animations-using-css-keyframes/
+.anim {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes ssi-fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes ssi-fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+.ssi-fadeIn {
+  -webkit-animation-name: ssi-fadeIn;
+  animation-name: ssi-fadeIn;
+}
+
+@-webkit-keyframes ssi-fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+@keyframes ssi-fadeOut{
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+.ssi-fadeOut {
+  -webkit-animation-name: ssi-fadeOut;
+  animation-name: ssi-fadeOut;
+}
+
+//--------------------------------------------------------
+
+//main modal end
+
+
+
+
+
+
+
+
+//imgBox Starts
+.ssi-backdrop.imgModal {
+  background: rgba(0, 0, 0, 0.87);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#CC000000', endColorstr='#CC000000'); /* IE */
+}
+.imgModal {
+  overflow: auto;
+  &.ssi-center{
+    .ssi-modalWindow{
+      width: 300px;
+    }
+  }
+  .ssi-modalWrapper {
+    margin-top: 55px;
+    z-index: 11111;
+    width: 300px;
+
+    .ssi-topIcons {
+      margin-right: -15px;
+      margin-top: -12px;
+      z-index: 11111;
+      ///@author http://stackoverflow.com/a/10019983/4801797
+      a {
+        background-color: #5c5c5e;
+        color: #fff;
+        width: 24px;
+        height: 24px;
+        line-height: 0;
+        border-radius: 30px;
+        &:hover {
+          color: #e9e9e9;
+        }
+      }
+      .ssi-closeIcon {
+        @include sprite($DelImg);
+        &:hover {
+          @include sprite($DelImg);
+        }
+      }
+    }
+
+
+
+    .ssi-topIcons.inTitle {
+      margin-top: 25px;
+      @include smallMedia {
+        margin-top: 15px;
+      }
+    }
+
+    &.ssi-imgBorder .ssi-modalContent {
+      --webkit-box-shadow: 0px 0px 31px -1px rgba(245, 245, 245, 0.3);
+      -moz-box-shadow: 0px 0px 31px -1px rgba(245, 245, 245, 0.3);
+      box-shadow: 0px 0px 31px -1px rgba(245, 245, 245, 0.3);
+      border: 1px solid white;
+    }
+    &.ssi-overHeight, &.ssi-overHeight .ssi-modalWindow {
+      transition: height .6s, width .6s;
+    }
+    .ssi-modalWindow {
+      border: none;
+      border-radius: 2px;
+      padding: 0;
+      background: none;
+      .ssi-modalTitle {
+        padding-left: 0;
+        text-align: center;
+        font-weight: 300;
+        color: white !important;
+        border-bottom: none;
+        @include smallMedia {
+          font-size: 15px;
+        }
+      }
+      .ssi-buttons {
+        border: none;
+      }
+      .ssi-modalContent {
+        position: relative;
+        h3,h4{
+          color: #5e5e5e;
+        }
+        overflow: hidden;
+        text-align: center;
+        border-radius: 0;
+        background: none;
+        margin: 0 auto;
+        padding: 0;
+        height: 300px;
+
+        .ssi-modalImg {
+          width: 100%;
+        }
+        .ssi-modalNavigation {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+          filter: alpha(opacity=0);
+          opacity: 0;
+          transition: opacity .5s;
+          .ssi-modalPrev, .ssi-modalNext {
+            top:0;
+            outline: 0;
+            height: 100%;
+            transition: opacity 0.3s;
+            cursor: pointer;
+            span {
+              position: relative;
+              top: 40%;
+              @extend .icon;
+            }
+          }
+          .ssi-modalPrev {
+            width: 20%;
+            left: 0;
+            float: left;
+            span {
+              @include sprite($left);
+            }
+            &:hover span {
+              @include sprite($left-h);
+            }
+          }
+          .ssi-modalNext {
+            width: 75%;
+            float: right;
+            right: 0;
+            span {
+              float: right;
+              @include sprite($right);
+            }
+            &:hover span {
+              @include sprite($right-h);
+            }
+          }
+        }
+        .ssi-imgButtons {
+          position: absolute;
+          left: 0;
+          bottom: auto;
+          width: 100%;
+          z-index: 101000001;
+          padding: 8px;
+          .ssi-leftButtons {
+            float: left;
+          }
+
+          .ssi-rightButtons {
+            float: right;
+          }
+          .ssi-imgBtn {
+            margin: 2px;
+            padding: 3px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.imgModal .ssi-modalWrapper.ssi-iframe {
+  width: 50%;
+  height: 55%;
+  @include largeMedia {
+    padding: 10px;
+    width: 90%;
+  }
+  @include mediumMedia {
+    width: 100%;
+  }
+  @include smallMedia {
+    width: 100%;
+  }
+  .ssi-modalWindow {
+    height: 100%;
+    .ssi-topIcons {
+      margin-right: 8%;
+      z-index: 2001;
+    }
+    .ssi-imgButtons {
+      width:0%
+    }
+    @include largeMedia {
+      padding: 10px;
+      width: 90%;
+      .ssi-topIcons {
+        margin-top: 0;
+        margin-right: 9%;
+        &.inTitle {
+          margin-top: 35px;
+        }
+
+      }
+    }
+    @include mediumMedia {
+      width: 100%;
+    }
+    @include smallMedia {
+      width: 100%;
+      max-height: 400px;
+      padding: 15px;
+
+    }
+  }
+  .ssi-modalContent {
+    width: 100%;
+    height: 90% !important;
+  }
+  iframe {
+    position: relative;
+    z-index: 2000;
+    width: 80%;
+    height: 100%;
+
+  }
+}
+
+.ssi-center.imgModal .ssi-iframe {
+  width: 100%;
+  height: 100%;
+  .ssi-modalWindow {
+    width: 60%;
+    height: 55%;
+    @include largeMedia {
+      padding: 10px;
+      width: 90%;
+    }
+    @include mediumMedia {
+      width: 100%;
+    }
+    @include smallMedia {
+      width: 100%;
+      max-height: 400px;
+      padding: 15px;
+    }
+  }
+  .ssi-modalContent {
+    width: 100%;
+    height: 90%;
+  }
+  iframe {
+    position: relative;
+    z-index: 2000;
+    width: 80%;
+    height: 100%;
+  }
+}
+
+.ssi-loader {
+  position: relative;
+  margin: auto auto;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: url("../images/loader.gif") no-repeat;
+}
+.ssi-navFadeOut{
+  opacity: 0 !important;
+}
+.ssi-navFadeIn {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !important;
+  filter: alpha(opacity=100) !important;
+  opacity: 1 !important;
+}
+.ssi-navFade{
+  transition: opacity .4s;
+}
+
+//imgBox end
+
+
+
+//notify start
+.notify {
+  &.ssi-modalWindow {
+    padding-top: 12px;
+  }
+  .ssi-icon {
+    max-width:30px;
+    max-height:30px;
+    float: left;
+    clear: left;
+  }
+
+  .ssi-modalContent {
+    max-height: 150px;
+    overflow: auto;
+    padding: 5px 15px;
+    margin-top: 0;
+    min-height: 30px;
+    &::-webkit-scrollbar:vertical {
+      width: 6px;
+    }
+    &::-webkit-scrollbar:horizontal {
+      height: 6px;
+    }
+  }
+  .ssi-modalTitle {
+    line-height:32px;
+    padding-bottom: 5px;
+    &:after {
+      content: " ";
+      display: block;
+      clear: both;
+    }
+  }
+
+  &.ssi-success {
+    padding: 3px 5px;
+    margin: 2px 0;
+    font: 500 18px "Times New Roman";
+    .ssi-modalTitle {
+      text-transform: capitalize;
+      padding-left: 5px;
+      span.success {
+        @extend .icon;
+        @include sprite($success);
+      }
+    }
+    .ssi-modalContent {
+      &::-webkit-scrollbar-thumb {
+        background-color: #3c7e28;
+      }
+    }
+    @include largeMedia {
+      font-size: 15px;
+      .ssi-modalTitle {
+        padding-bottom: 1px;
+        font-size: 20px;
+      }
+    }
+    @include mediumMedia {
+      width: 45%;
+    }
+    @include smallMedia {
+      font-size: 12px;
+    }
+    color: #FFFFFF;
+    background-color: #2ea53a;
+  }
+  &.ssi-success:hover {
+    background-color: #2c9738;
+  }
+  &.ssi-info {
+    @extend .ssi-success;
+    .ssi-modalTitle span.info {
+      @extend .icon;
+      @include sprite($info);
+    }
+    .ssi-modalContent {
+      &::-webkit-scrollbar-thumb {
+        background-color: #5d6ad6;
+      }
+    }
+    background-color: #006cbc;
+    &:hover {
+      background-color: #00529d;
+    }
+  }
+  &.ssi-warning {
+    @extend .ssi-success;
+    .ssi-modalTitle span.warning {
+      @extend .icon;
+      @include sprite($warning);
+    }
+    .ssi-modalContent {
+      &::-webkit-scrollbar-thumb {
+        background-color: #b57300;
+      }
+    }
+    background-color: #db9100;
+    &:hover {
+      background-color: #c68200;
+    }
+  }
+  &.ssi-error {
+    @extend .ssi-success;
+    .ssi-modalTitle span.error {
+      @extend .icon;
+      @include sprite($error);
+    }
+    .ssi-modalContent {
+      &::-webkit-scrollbar-thumb {
+        background-color: #9d1d2a;
+      }
+    }
+    background-color: #bd3630;
+    &:hover {
+      background-color: #a73832;
+    }
+  }
+}
+
+//notify end

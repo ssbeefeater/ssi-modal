@@ -1,0 +1,44 @@
+$fullscreen: -0px -0px 24px 24px;
+$Del-h: -0px -24px 24px 24px;
+$DelImg: -0px -48px 24px 24px;
+$Del: -0px -72px 24px 24px;
+$exitFs-h: -0px -96px 24px 24px;
+$exitFs: -0px -120px 24px 24px;
+$fullscreen-h: -0px -144px 24px 24px;
+$error: -0px -168px 33px 33px;
+$info: -0px -201px 33px 33px;
+$success: -0px -234px 33px 33px;
+$warning: -0px -267px 33px 33px;
+$left-h: -0px -300px 56px 56px;
+$left: -0px -356px 56px 56px;
+$right-h: -0px -412px 56px 56px;
+$right: -0px -468px 56px 56px;
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 3);
+}
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 4);
+}
+@function sprite-width($sprite) {
+   @return nth($sprite, 3);
+}
+@function sprite-height($sprite) {
+   @return nth($sprite, 4);
+}
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 1);
+  $sprite-offset-y: nth($sprite, 2);
+  background-position: $sprite-offset-x $sprite-offset-y;
+}
+@mixin sprite($sprite, $display: block) {
+   @include sprite-position($sprite);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: $display;
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+.icon {
+  background-image: url('../images/sprite.png');
+}

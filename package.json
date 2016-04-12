@@ -1,0 +1,37 @@
+{
+  "name": "ssi-modal",
+  "version": "1.0.0",
+  "description": "A flexible and powerful modal window.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "bower install"
+  },
+  "author": "ssbeefeater",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.11.2",
+    "browserify": "^13.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-closure-compiler": "^0.4.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-foreach": "^0.1.0",
+    "gulp-if": "^2.0.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "jquery": "^1.12.2",
+    "lwip": "0.0.8",
+    "node-sass": "^3.4.2",
+    "path": "^0.12.7",
+    "sprity": "^1.0.8",
+    "sprity-sass": "^1.0.4",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "backbone": "latest",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "latest",
+    "jquery": "^2.2.1",
+    "lodash": "^4.6.0"
+  }
+}
