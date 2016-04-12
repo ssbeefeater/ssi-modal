@@ -25,13 +25,12 @@
     "path": "^0.12.7",
     "sprity": "^1.0.8",
     "sprity-sass": "^1.0.4",
-    "vinyl-source-stream": "^1.1.0"
-  },
-  "dependencies": {
+    "vinyl-source-stream": "^1.1.0",
     "backbone": "latest",
     "bootstrap": "^3.3.6",
-    "font-awesome": "latest",
-    "jquery": "^2.2.1",
     "lodash": "^4.6.0"
+  },
+  "dependencies": {
+    "jquery": "^2.2.1"
   }
 }
