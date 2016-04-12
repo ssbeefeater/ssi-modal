@@ -206,11 +206,13 @@ div.description{
     line-height: 25px;
 }
 pre.inline{
-    padding:4px;
+
+    padding:4px!important;
     height:10px;
     width:280px;
     display:inline;
 }
+
 pre{
     word-break: normal!important;
     word-wrap: normal!important;

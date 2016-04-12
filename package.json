@@ -4,8 +4,7 @@
   "main": "dist/ssi-modal/js/ssi-modal.js",
   "description": "A flexible and powerful modal window.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "bower install"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ssbeefeater",
   "license": "MIT",
