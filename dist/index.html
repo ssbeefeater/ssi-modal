@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <title>Server</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.tmp) styles/main.css -->
+
+  <link rel="stylesheet" href="css/bundle.css"/> <!-- endbuild -->
+  <link rel="stylesheet" href="ssi-modal/styles/ssi-modal.css"/> <!-- endbuild -->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/> <!-- endbuild -->
+  <link rel="stylesheet" href="bower_components/animate.css/animate.css"/> <!-- endbuild -->
+</head>
+<body>
+
+<!--[if lt IE 10]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<p>If you want to test ssi-modal go <a href="ieExamples.html">here</a></p>
+<![endif]-->
+<!--[if !(lt IE 10)]>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Start Bootstrap</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="header-menu collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul id="menu" class="nav navbar-nav">
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+<!-- Page Content -->
+
+<div id="mainContent" class="container-fluid">
+  <div class="row">
+    <div id="scrollSpy" class="col-md-2">
+      <h3 class="title"></h3>
+
+      <ul id="scrollSpyUl" class="nav nav-pills nav-stacked">
+
+      </ul>
+    </div>
+    <div id="content" class="col-md-10 col-lg-offset-2">
+
+    </div>
+
+  </div>
+
+</div>
+<!-- /.container -->
+
+</div>
+
+<script type="text/template" id="contentTemplate">
+
+  <div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#result<%=id%>" aria-controls="home" role="tab" data-toggle="tab">Result</a>
+      </li>
+      <li role="presentation"><a href="#code<%=id%>" aria-controls="profile" role="tab" data-toggle="tab">Code</a></li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="result<%=id%>">
+        </br> <%= example.result%></div>
+      <div role="tabpanel" class="tab-pane" id="code<%=id%>">
+        <div>
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#javascript<%=id%>" aria-controls="home" role="tab" data-toggle="tab">Javascript</a>
+            </li>
+            <li role="presentation"><a href="#html<%=id%>" aria-controls="profile" role="tab" data-toggle="tab">Html</a></li>
+          </ul>
+          <div class="tab-content">
+
+            <div role="tabpanel" class="tab-pane active" id="javascript<%=id%>">
+              <pre class="prettyprint"><code class="language-javascript"><%=example.code%></code></pre>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="html<%=id%>">
+              <pre class="prettyprint"><code class="language-html"><%=example.html%></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</script>
+
+
+
+<script src="bower_components/google-code-prettify/bin/prettify.min.js"></script>
+<script src="scripts/bundle.js"></script>
+<![endif]-->
+</body>
+</html>
