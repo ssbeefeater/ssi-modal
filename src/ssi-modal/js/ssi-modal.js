@@ -102,7 +102,7 @@
          * @type {string}
          */
         this.backdropId = '';
-        this.showbd=true;
+        this.showbd = true;
         this.setOptions(options);
     };
     Ssi_modal.prototype.setOptions = function (options, value) {
@@ -166,7 +166,7 @@
             }
             setAnimations(this);
         } else {
-            this.options[options] =value ;
+            this.options[options] = value;
             if (options === 'animation' || 'modalAnimation' || 'backdropAnimation') {
                 setAnimations(this);
             }
@@ -511,30 +511,30 @@
             var $orphanBackdrop = $('#' + orphanBackdrop);
             this.backdropId = orphanBackdrop;//change the id to the same as the new modal
             $backdrop = $orphanBackdrop.attr('class', 'ssi-backdrop ' + this.pluginName + ' ' + this.options.backdropClassName);
-            this.showbd=false;
+            this.showbd = false;
             orphanBackdrop = true;
         } else {
             $backdrop = $('<div id="ssi-backdrop' + this.numberId + '" class="ssi-backdrop ssi-hidden ' + (this.options.backdropClassName) + ' ' + this.pluginName + '"></div>');
             if (this.options.backdrop === 'shared' || this.options.backdrop === 'byKindShared') {
                 var $sharedBackdrop;
                 if (this.options.backdrop === 'byKindShared') {
-                    $sharedBackdrop = $('.ssi-backdrop.' + this.pluginName);
+                    $sharedBackdrop = $('.ssi-backdrop.ssi-openedDialog.' + this.pluginName);
                 } else {
-                    $sharedBackdrop = $('.ssi-backdrop');
+                    $sharedBackdrop = $('.ssi-backdrop.ssi-openedDialog');
                 }
                 if (!$sharedBackdrop[0]) {//check if backdrop already exists
                     $('body').append($backdrop);//if not , append one
                     this.backdropId = 'ssi-backdrop' + this.numberId;
-                    this.showbd=true;
+                    this.showbd = true;
                 } else {
                     this.backdropId = $sharedBackdrop.attr('id');
-                    this.showbd=false;
+                    this.showbd = false;
                     $backdrop = $sharedBackdrop;
                 }
             } else if (this.options.backdrop === true) {
                 $('body').append($backdrop);
                 this.backdropId = 'ssi-backdrop' + this.numberId;
-                this.showbd=true;
+                this.showbd = true;
             }
             this.$backdrop = $backdrop;
         }
@@ -561,8 +561,7 @@
      * @return $backdrop
      */
     var setWrapper = function (modalObj) {
-        return  $('<div id="ssi-modalWrapper" class=" ssi-modalWrapper ' + modalObj.options.sizeClass + '"></div>');
-
+        return $('<div id="ssi-modalWrapper" class=" ssi-modalWrapper ' + modalObj.options.sizeClass + '"></div>');
 
     };
     /**
@@ -833,10 +832,7 @@
             if (typeof modalObj.options.onShow === 'function') {
                 modalObj.options.onShow(modalObj);//execute onShow callback
             }
-            $modalOuter.trigger({
-                type: "onShow.ssi-modal",
-                modal: modalObj
-            });//trigger show event);
+            $modalOuter.trigger("onShow.ssi-modal");//trigger show event);
         };
         $modalOuter.addAnimation(this.options.modalAnimation.show, function () {
             callback();
@@ -864,7 +860,7 @@
      */
     Ssi_modal.prototype.showBackdrop = function () {
         var modalObj = this;
-        var $backdrop = this.get$backdrop();
+        var $backdrop = this.get$backdrop().addClass('ssi-openedDialog');
 
         $backdrop.addAnimation(this.options.backdropAnimation.show).removeClass('ssi-hidden');
 
@@ -882,7 +878,7 @@
 
         this.showModal();
 
-        if (orphanBackdrop === false && this.options.backdrop && this.showbd===true) {
+        if (orphanBackdrop === false && this.options.backdrop && this.showbd === true) {
             this.showBackdrop();
         }
 
@@ -898,15 +894,23 @@
         if (this.options.keepContent !== true) {
             $backdrop.off('click.ssi-modal' + this.numberId);
         }
-        if ((this.options.backdrop === true || (    (   ( this.options.backdrop === 'shared' && sharedBackdrop < 1) || ( this.options.backdrop === 'byKindShared' && byKindShare[this.pluginName] < 1)  ) && ( (!this.get$modal(this.modalId.replace(this.numberId.toString(), this.backdropId.replace('ssi-backdrop', '')))[0]) || this.options.stack || this.backdropId.replace('ssi-backdrop', '') == this.numberId))  )) {//this maybe blow your mine
-            var closeBackdrop = function () {//This will execute when the hide animation end
-                $backdrop.addClass('ssi-hidden');
-                if (modalObj.options.keepContent !== true) $backdrop.remove();//remove backdrop if keepContent option is false
-            };
-            $backdrop.addAnimation(this.options.backdropAnimation.hide, closeBackdrop);
+        var thisS=this
+        var closeBack = function () {
+            if ((thisS.options.backdrop === true || (    (   ( thisS.options.backdrop === 'shared' && sharedBackdrop < 1) || ( thisS.options.backdrop === 'byKindShared' && byKindShare[thisS.pluginName] < 1)  ) && ( (!thisS.get$modal(thisS.modalId.replace(thisS.numberId.toString(), thisS.backdropId.replace('ssi-backdrop', '')))[0]) || thisS.backdropId.replace('ssi-backdrop', '') == thisS.numberId))  )) {//thisS maybe blow your mine
+                var closeBackdrop = function () {//thisS will execute when the hide animation end
+                    $backdrop.addClass('ssi-hidden').removeClass('ssi-openedDialog');
+                    if (modalObj.options.keepContent !== true) $backdrop.remove();//remove backdrop if keepContent option is false
+                };
+                $backdrop.addAnimation(thisS.options.backdropAnimation.hide, closeBackdrop);
+            }
+            if (orphanBackdrop === thisS.backdropId) {
+                orphanBackdrop = false;
+            }
         }
-        if (orphanBackdrop === this.backdropId) {
-            orphanBackdrop = false;
+        if (this.options.stack && this.options.outSideClose) {
+            setTimeout(closeBack, 10);
+        } else {
+            closeBack()
         }
         return this;
     };
@@ -1008,14 +1012,14 @@
         if (!option) {
             if (this.options.fitScreen) {
                 if (typeof this.options.fitScreen === 'number') {
-                    optionsOffset =Math.abs(this.options.fitScreen-offset);
+                    optionsOffset = Math.abs(this.options.fitScreen - offset);
                 }
                 $content.css('min-height', windowHeight - totalHeight - optionsOffset); //add more margin down
             }
             if (this.options.fixedHeight) {
                 optionsOffset = 0;
                 if (typeof this.options.fixedHeight === 'number') {
-                    optionsOffset = Math.abs(this.options.fixedHeight-offset);
+                    optionsOffset = Math.abs(this.options.fixedHeight - offset);
                 }
                 $content.css('max-height', (windowHeight - totalHeight - optionsOffset)); //add more margin down
             }
@@ -1154,11 +1158,11 @@
                 group = toArray(group);
                 var groupLength = group.length;
                 for (var i = 0; i < groupLength; i++) {
-                    $activeModals = $('.ssi-openedDialog.' + group[i]);
+                    $activeModals = $('.ssi-modal.ssi-openedDialog.' + group[i]);
                     close($activeModals);
                 }
             } else {
-                $activeModals = $('.ssi-openedDialog');
+                $activeModals = $('.ssi-modal.ssi-openedDialog');
                 close($activeModals);
             }
 
@@ -1490,7 +1494,7 @@
             $modalWrapper.css('width', naturalWidth);
             placeImg();
 
-                $modalWrapper.addClass('ssi-imgBorder')
+            $modalWrapper.addClass('ssi-imgBorder')
 
         }
 
@@ -1678,8 +1682,7 @@
 
     $.fn.addAnimation = function (animationName, callback) {
         var animationEnd = 'mozAnimationEnd webkitAnimationEnd  MSAnimationEnd oanimationend animationend';
-
-        if (animationName.indexOf('ssi-fade') !== -1&& animationSupport===false) {
+        if (animationName.indexOf('ssi-fade') !== -1 && animationSupport === false) {
             return $(this)[animationName.replace('anim ssi-', '')](300, function () {
                 if (typeof callback === 'function') {
                     callback();

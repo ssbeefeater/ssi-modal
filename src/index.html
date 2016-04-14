@@ -1,110 +1,527 @@
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Server</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-  <!-- build:css(.tmp) styles/main.css -->
+    <meta charset="UTF-8">
+    <title>ie examples</title>
 
-  <link rel="stylesheet" href="css/bundle.css"/> <!-- endbuild -->
-  <link rel="stylesheet" href="ssi-modal/styles/ssi-modal.css"/> <!-- endbuild -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css"/> <!-- endbuild -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css"/> <!-- endbuild -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <!-- endbuild -->
+    <link rel="stylesheet" href="css/bundle.css"/> <!-- endbuild -->
+    <link rel="stylesheet" href="ssi-modal/styles/ssi-modal.css"/> <!-- endbuild -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css"/>
+    <!-- endbuild -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css"/>
+    <!-- endbuild -->
 </head>
 <body>
 
-<!--[if lt IE 10]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-  your browser</a> to improve your experience.</p>
-<p>If you want to test ssi-modal go <a href="ieExamples.html">here</a></p>
-<![endif]-->
-<!--[if !(lt IE 10)]>
 
-<!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="header-menu collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul id="menu" class="nav navbar-nav">
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- /.container -->
-</nav>
-<!-- Page Content -->
+<table class="ie table">
+    <tr>
+        <td>Basic example:
+            <button id="modal" class="btn btn-primary">Open modal</button>
+        </td>
+        <td>Size, title, animation:
+            <button id="modal1" class="btn btn-primary">Open modal</button>
+        </td>
+        <td>Confirm - Dialog:
+            <button id="modal2" class="btn btn-primary">Open modal</button>
+            <button id="modal2a" class="btn btn-primary">Open modal</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Modal with buttons:
+            <button id="modal3" class="btn btn-primary">Open modal</button>
+        </td>
+        <td>KeepContent:
+            <button id="modal4" class="btn btn-primary">Open modal</button>
+            <button id="modal4a" class="btn btn-primary">Open modal</button>
+        </td>
+        <td>Multi levels:
+            <button id="modal5" class="btn btn-primary">Open modal</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Callbacks:
+            <button id="modal6" class="btn btn-primary">Open modal</button>
+        </td>
+        <td>Fixed height:
+            <button id="modal7" class="btn btn-primary">Open modal</button>
+            <button id="modal7a" class="btn btn-primary">FixedHeight</button>
+            <button id="modal7b" class="btn btn-primary">fitScreen</button>
+        </td>
+        <td>Using existing element:
+            <button id="modal8" class="btn btn-primary">Open modal</button>
+            <div id="simpleDiv"><input type="text" value="Edit me"/></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Positioning:
+            <button id="modal9" class="btn btn-primary">Open modal</button>
+            <br>
 
-<div id="mainContent" class="container-fluid">
-  <div class="row">
-    <div id="scrollSpy" class="col-md-2">
-      <h3 class="title"></h3>
+        </td>
+        <td>Stack modals:
+            <button id="modal10" class="btn btn-primary">Open modal</button>
+        </td>
+        <td>
+            -------------
+        </td>
+    </tr>
+    <tr>
+        <td>ssi-notify:
+            <button id="notify" class="btn btn-success">Right top</button>
+            <button id="notify2" class="btn btn-danger">Left top</button>
+        </td>
+        <td>
+            <button id="notify3" class="btn btn-primary">Right bottom</button>
+            <button id="notify4" class="btn btn-warning">Left bottom</button>
+        </td>
+        <td>
+            <button id="notify5" class="btn btn-default">Center top</button>
+            <button id="notify6" class="btn btn-default">Center bottom</button>
+        </td>
+    </tr>
+    <tr>
+        <td>imgBox: <a data-ssi_imgGroup="group1"
+                       href="http://www.wallpapereast.com/static/images/Dragon-Backgrounds-Wallpaper-Hd-44.jpg"
+                       title="My awesome dragon" class="ssi-imgBox">My dragon</a>
+            <a data-ssi_imgGroup="group1" href="images/test/oops.jpg" title="Me and my dragon"
+               data-alt="Me and my dragon playing in my ward!" class="ssi-imgBox"> <img
+                    alt="Me and my dragon playing in my ward!" src="images/test/oops.jpg"/> </a> <a
+                    data-ssi_imgGroup="group1"
+                    href="http://www.rockhard.gr/sites/default/files/field/image/master_of_puppets_album.jpg"
+                    title="Metallica"
+                    class="ssi-imgBox awesome"> <img
+                    src="http://www.rockhard.gr/sites/default/files/field/image/master_of_puppets_album.jpg"/> </a></td>
+        <td><a data-ssi_imgGroup="landscapes" href="https://player.vimeo.com/video/29950141?byline=0&portrait=0" title="Landscapes"
+               class="ssi-imgBox"> <img src="https://pbs.twimg.com/profile_images/640687635946565632/5pRp2WLy.jpg"/> </a> <a
+                data-ssi_imgGroup="landscapes" title="Canada"
+                href="http://images.nationalgeographic.com/wpf/media-live/photos/000/714/overrides/canada-view-niblet_71483_600x450.jpg" class="ssi-imgBox"> <img src="http://images.nationalgeographic.com/wpf/media-live/photos/000/714/overrides/canada-view-niblet_71483_600x450.jpg"/> </a> <a
+                data-ssi_imgGroup="landscapes" href="http://learnmyshot.com/wp-content/uploads/living_landscapes_ebook-65.jpg" title="Paradise"
+                class="ssi-imgBox"> <img src="http://learnmyshot.com/wp-content/uploads/living_landscapes_ebook-65.jpg"/> </a></td>
+        <td><a data-ssi_imgGroup="bands"
+               href="https://lh3.googleusercontent.com/-VkJBeXEbZyk/U-o-d3M4svI/AAAAAAAAMdM/DwLxs2GEluw/w426-h639/music-iron-maiden-times-square-eddie-poster-GBlp1636.jpg"
+               title="My landscape" class="ssi-imgBox"><img
+                src="https://lh3.googleusercontent.com/-VkJBeXEbZyk/U-o-d3M4svI/AAAAAAAAMdM/DwLxs2GEluw/w426-h639/music-iron-maiden-times-square-eddie-poster-GBlp1636.jpg"/>
+        </a> <a data-ssi_imgGroup="bands"
+                href="http://s3.amazonaws.com/NRNArt/Led-Zeppelin--Celebration-Day-album-cover.jpg"
+                class="ssi-imgBox"> <img
+                src="http://s3.amazonaws.com/NRNArt/Led-Zeppelin--Celebration-Day-album-cover.jpg"/> </a> <a
+                data-ssi_imgGroup="bands"
+                href="http://41.media.tumblr.com/f1ef0a8d897caae7c1fb091e05729ed4/tumblr_inline_no25izUaSJ1t9z0nh_1280.jpg"
+                title="Metallica" class="ssi-imgBox awesome"> <img
+                src="http://41.media.tumblr.com/f1ef0a8d897caae7c1fb091e05729ed4/tumblr_inline_no25izUaSJ1t9z0nh_1280.jpg"/>
+        </a>
+        </td>
+    </tr>
 
-      <ul id="scrollSpyUl" class="nav nav-pills nav-stacked">
 
-      </ul>
-    </div>
-    <div id="content" class="col-md-10 col-lg-offset-2">
-
-    </div>
-
-  </div>
-
-</div>
-<!-- /.container -->
-
-</div>
-
-<script type="text/template" id="contentTemplate">
-
-  <div>
-    <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#result<%=id%>" aria-controls="home" role="tab" data-toggle="tab">Result</a>
-      </li>
-      <li role="presentation"><a href="#code<%=id%>" aria-controls="profile" role="tab" data-toggle="tab">Code</a></li>
-    </ul>
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="result<%=id%>">
-        </br> <%= example.result%></div>
-      <div role="tabpanel" class="tab-pane" id="code<%=id%>">
-        <div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#javascript<%=id%>" aria-controls="home" role="tab" data-toggle="tab">Javascript</a>
-            </li>
-            <li role="presentation"><a href="#html<%=id%>" aria-controls="profile" role="tab" data-toggle="tab">Html</a></li>
-          </ul>
-          <div class="tab-content">
-
-            <div role="tabpanel" class="tab-pane active" id="javascript<%=id%>">
-              <pre class="prettyprint"><code class="language-javascript"><%=example.code%></code></pre>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="html<%=id%>">
-              <pre class="prettyprint"><code class="language-html"><%=example.html%></code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
+</table>
+<!--
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a data-ssi_imgGroup="landscapes" href="https://player.vimeo.com/video/130563463" title="Landscapes" class="ssi-imgBox">\n  <img src="images/3b5dd04be82af929dd3070cb089bcf03.jpg"/>\n</a> \n<a data-ssi_imgGroup="landscapes" href="images/ipad.jpg" title="Landscapes" class="ssi-imgBox">\n  <img src="images/ipad.jpg"/>\n</a> \n<a data-ssi_imgGroup="landscapes" href="images/canada-view-niblet_71483_600x450.jpg" title="Canada" class="ssi-imgBox awesome">\n  <img src="images/canada-view-niblet_71483_600x450.jpg"/>\n</a>\n<a data-ssi_imgGroup="bands" href="images/iron-maiden-fear-live-i15906.jpg" title="My landscape" class="ssi-imgBox">\n  <img src="images/iron-maiden-fear-live-i15906.jpg"/>\n</a> \n<a data-ssi_imgGroup="bands" href="http://www.wallpapereast.com/static/images/Dragon-Backgrounds-Wallpaper-Hd-44.jpg" title="Landscapes" class="ssi-imgBox">\n  <img src="images/brand.gif"/>\n</a> \n<a data-ssi_imgGroup="bands" href="images/master_of_puppets_album.jpg" title="Metallica" class="ssi-imgBox awesome">\n  <img src="images/master_of_puppets_album.jpg"/>\n</a>
 
 
+-->
 
-    </div>
-  </div>
+
+<script src="https://code.jquery.com/jquery-1.9.0b1.min.js"
+        integrity="sha256-oySIpOV91gBjQNQ6dzegyTYDoVDfkFRPmpCzGgS3DZI=" crossorigin="anonymous"></script>
+<script src="ssi-modal/js/ssi-modal.js"></script>
+<script>
+    var $body = $('body');
+    ssi_modal.imgBox({
+        imgTitle: true,
+        animation: true,
+        center: true
+    }, 'landscapes');
+    ssi_modal.imgBox({
+        imgTitle: false,
+        buttons: [{
+            label: 'next',
+            callback: function (e, thisS) {
+                thisS.navigate('next');
+            }
+        }],
+        backDropAnimation: true,
+        modalAnimation: {
+            'show': 'animated  rotateInDownLeft',
+            hide: 'animated  rotateOutDownLeft'
+        }
+    }, 'bands');
+    $('#modal').click(function () {
+        ssi_modal.show({
+            content: 'Hello World'
+        });
+    });
+    $('#modal1').click(function () {
+        ssi_modal.show({
+            content: 'Hello World',
+            sizeClass: 'small',
+            title: 'Featured modal',
+            animation: true
+        });
+    });
+    $('#modal2').click(function () {
+        ssi_modal.confirm({
+                    content: 'Are you sure you want to exit?',
+                    okBtn: {
+                        className: 'btn btn-primary'
+                    },
+                    cancelBtn: {
+                        className: 'btn btn-danger'
+                    }
+                }, function (result) {
+                    if (result)
+                        ssi_modal.notify('success', {content: 'Result: ' + result});
+                    else
+                        ssi_modal.notify('error', {content: 'Result: ' + result});
+                }
+        );
+    });
+    $('#modal2a').click(function () {
+        ssi_modal.dialog({content: 'Hello World', okBtn: {className: 'btn btn-primary'}});
+    });
+    $('#modal3').click(function () {
+        ssi_modal.show({
+            content: 'Hello World',
+            title: 'Modal with buttons',
+            buttons: [{
+                className: 'btn btn-primary',
+                label: 'Ok',
+                enableAfter: 3,
+                closeAfter: false,
+                method: function () {
+                    ssi_modal.notify('info', {content: 'Ok'})
+                }
+            }, {
+                className: 'btn btn-danger',
+                label: 'Cancel',
+                closeAfter: true,
+                method: function () {
+                    ssi_modal.notify('error', {content: 'Cancel'})
+                }
+            }]
+        });
+
+    });
+    $('#modal4').click(function () {
+        ssi_modal.show({content: '<input type="text"/>', keepContent: true}, '#modal5')
+    });
+    $('#modal4a').click(function () {
+        ssi_modal.show({
+            content: '<form>' +
+            '<label for="name">Your name:</label><br/>' +
+            '<input id="name" class="input" name="name" type="text"/><br/>' +
+            '<label for="email">Your email:</label><br/>' +
+            '<input id="email" class="input" name="email"/><br/>' +
+            '<label for="message">Your message:</label><br/>' +
+            '<textarea id="message" class="input" name="message"></textarea><br/>' +
+            '</form>',
+            sizeClass: 'small',
+            title: 'Keep content',
+            keepContent: false,
+            beforeClose: function (modal) {
+                ssi_modal.confirm({
+                    position: 'top center',
+                    content: 'Your content will be lost! Are you sure you want to continue?',
+                    okBtn: {className: 'btn btn-primary'},
+                    cancelBtn: {className: 'btn btn-danger'}
+                }, function (result) {
+                    if (result === true) {
+                        modal.options.keepContent = false;
+                        modal.options.beforeClose = '';
+                        modal.close();
+                        ssi_modal.notify('error', {
+                            position: 'center top',
+                            content: "The content removed!"
+                        })
+                    }
+                });
+                return false;
+            },
+            buttons: [{
+                className: 'btn btn-danger',
+                label: 'close',
+                closeAfter: true,
+                keepContent: false
+            }, {
+                className: 'btn btn-success',
+                label: 'ok',
+                closeAfter: false,
+                keepContent: true,
+                method: function (e, modal) {
+                    var beforeCloseMethod = modal.options.beforeClose;
+                    modal.options.beforeClose = '';
+                    modal.options.keepContent = true;
+                    modal.close();
+                    modal.options.beforeClose = beforeCloseMethod;
+                    ssi_modal.notify('success', {
+                        position: 'center top',
+                        content: "The content is safe!!"
+                    })
+                }
+            }]
+        }, '#modal4');
+    });
+    $('#modal5').click(function () {
+
+        ssi_modal.show({
+            content: '<button id="modal6b" class="btn btn-primary">Open modal</button>',
+            sizeClass: 'medium',
+            title: 'Modal with buttons',
+            fitScreen: true,
+            fixedHeight: true,
+            onClose: function () {
+                ssi_modal.notify('error', {content: 'first closed'})
+            }
+        });
+    });
+    $body.on('click.example', '#modal6b', function () {
+
+        ssi_modal.show({
+            content: '<button id="modal6c" class="btn btn-primary">Open modal</butto>',
+            sizeClass: 'small',
+            title: 'Second modal',
+            onClose: function () {
+                ssi_modal.notify('warning', {content: 'Second closed'})
+            }
+        });
+    });
+    $body.on('click.example', '#modal6c', function () {
+        ssi_modal.show({
+            content: '<a href="images/3b5dd04be82af929dd3070cb089bcf03.jpg" title="My landscape" class="ssi-imgBox"><img src="images/3b5dd04be82af929dd3070cb089bcf03.jpg" style="width:50px;height:50px"/></a>',
+            sizeClass: 'dialog',
+            title: 'Third modal',
+            onClose: function () {
+                ssi_modal.notify('info', {content: 'Third closed'})
+            }
+        });
+    });
+    $('#modal6').click(function () {
+        ssi_modal.show({
+            sizeClass: 'dialog',
+            className: 'awesomeModal',
+            title: 'Callbacks',
+            beforeShow: function (modal) {
+                ssi_modal.notify('info', {content: 'The modal with title: ' + modal.options.title + ' will open'});
+            },
+            onShow: function (modal) {
+                ssi_modal.notify('success', {content: 'The modal with className: ' + modal.options.className + ' just opened'});
+            },
+            beforeClose: function (modal) {
+                ssi_modal.notify('warning', {content: 'The modal with title: ' + modal.options.title + ' will close'});
+            },
+            onClose: function (modal) {
+                ssi_modal.notify('error', {content: 'The modal with className: ' + modal.options.className + ' just closed'});
+            }
+        });
+    });
+    var modalContent = 'Start</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>-</br>End';
+    $('#modal7').click(function () {
+        ssi_modal.show({
+            content: modalContent,
+            title: 'Normal modal'
+        });
+    });
+    $('#modal7a').click(function () {
+        ssi_modal.show({
+            content: ' ',
+            title: 'Fixed height',
+            fixedHeight: true,
+            buttons: [{
+                side: 'left', label: 'Add content', method: function (e, modal) {
+                    modal.setContent(modalContent, 'append')
+                }
+            }]
+        });
+    });
+    $('#modal7b').click(function () {
+        ssi_modal.show({
+            content: 'Hello world',
+            title: 'Fit screen',
+            fixedHeight: true,
+            fitScreen: true,
+            buttons: [{
+                side: 'left', label: 'Add content', method: function (e, modal) {
+                    modal.setContent(modalContent, 'append')
+                }
+            }]
+        });
+    });
+
+    $body.on('click', '#modal5b', function (e) {
+    });
+    $('#modal8').click(function () {
+        ssi_modal.show({
+            content: $('#simpleDiv'),
+            title: 'ssi-modal',
+            extendOriginalContent: true
+        })
+
+    });
+    var modalOptions = {
+        animation: true,
+        sizeClass: 'dialog'
+    };
+    $('#modal9').click(function () {
+        modalOptions.content = '<button id="modal10a" class="btn btn-primary">Left top</button>';
+        modalOptions.title = modalOptions.position = 'right top';
+        ssi_modal.show(modalOptions)
+    });
+
+    $body.on('click.example', '#modal10a', function () {
+        modalOptions.content = '<button id="modal10b" class="btn btn-primary">Center bottom</button>';
+        modalOptions.title = modalOptions.position = 'left top';
+        ssi_modal.show(modalOptions)
+    });
+    $body.on('click.example', '#modal10b', function () {
+        modalOptions.content = '<button id="modal10c" class="btn btn-primary">Left bottom</button>';
+        modalOptions.title = modalOptions.position = 'center bottom';
+        ssi_modal.show(modalOptions)
+    });
+    $body.on('click.example', '#modal10c', function () {
+        modalOptions.content = '<button id="modal10d" class="btn btn-primary">Right bottom</button>';
+        modalOptions.title = modalOptions.position = 'left bottom';
+        ssi_modal.show(modalOptions)
+    });
+    $body.on('click.example', '#modal10d', function () {
+        modalOptions.content = '<button id="modal10e" class="btn btn-primary">Center top</button>';
+        modalOptions.title = modalOptions.position = 'right bottom';
+        ssi_modal.show(modalOptions)
+    });
+    $body.on('click.example', '#modal10e', function () {
+        modalOptions.content = 'The end!!<br><br><button id="modal10f" class="btn btn-primary">Remove all</button>';
+        modalOptions.title = modalOptions.position = 'center top';
+        ssi_modal.show(modalOptions)
+    });
+    $body.on('click.example', '#modal10f', function () {
+        ssi_modal.removeAll();
+    })
+
+    $body.on('click.example', '#modal10', function () {
+
+        ssi_modal.show({
+            title: 'stackModal left top',
+            position: 'left top',
+            content: '<button id="modal11a" class="btn btn-primary">Open modal</button>',
+            backdrop: false,
+            stack: true
+        })
+    });
+    $body.on('click.example', '#modal11a', function () {
+        ssi_modal.show({
+            title: 'stackModal right top',
+            position: 'right top',
+            content: '<button id="modal11" class="btn btn-primary">Open modal</button>',
+            backdrop: false,
+            stack: true
+        })
+    });
+
+    //====== right top ======
+
+    $('#notify').click(function () {
+        ssi_modal.notify('success', {
+            content: 'You have successfully upload the file!',
+            modalAnimation: {
+                'show': 'animated fadeInRight mediumSpeed',
+                'hide': 'animated  fadeOutRight mediumSpeed'
+            }
+        });
+    });
+    //====== left top ======
+
+    $('#notify2').click(function () {
+        ssi_modal.notify('error', {
+            position: 'left top',
+            backdrop: 'shared', outSideClose: true,
+            content: 'An error occurred.',
+            buttons: [
+                {
+                    label: 'Shared backdrop', className: 'btn btn-default btn-xs', method: function () {
+                    ssi_modal.notify('info', {content: 'hi', outSideClose: true, backdrop: 'shared'})
+                }
+                },
+                {
+                    label: 'Without backdrop', className: 'btn btn-default btn-xs', method: function () {
+                    ssi_modal.notify('warning', {content: 'hi'})
+                }
+                }
+            ]
+        })
+    });
+    //====== left bottom ======
+    $("#notify3").click(function () {
+        ssi_modal.notify('info', {position: 'right bottom', content: 'Hello there'})
+    });
+    $('#notify4').click(function () {
+        ssi_modal.notify('warning', {
+            position: 'left bottom',
+            content: 'You have to register first to see the content!'
+        })
+    });
+    //====== center top ======
+
+    $('#notify5').click(function () {
+        ssi_modal.notify('dialog', {
+            sizeClass: 'medium',
+            okBtn: {className: 'btn btn-primary'},
+            position: 'center top',
+            content: 'This site uses cookies to provide better services!'
+        }, function () {
+        })
+    });
+    //====== center bottom ======
+
+    $('#notify6').click(function () {
+        ssi_modal.notify('confirm', {
+            closeIcon: true,
+            okBtn: {className: 'btn btn-primary'},
+            cancelBtn: {className: 'btn btn-danger'},
+            position: 'center bottom',
+            content: 'Are you sure you want to exit?'
+        }, function (result) {
+            if (result) {
+                ssi_modal.notify('success', {content: 'Result: ' + result})
+            } else {
+                ssi_modal.notify('error', {content: 'Result: ' + result})
+            }
+        })
+    });
+    //====== custom full ======
+
+    $('#notify7').click(function () {
+        ssi_modal.notify('custom', {
+            sizeClass: 'full',
+            icon: 'fa fa-glass',
+            position: 'center top',
+            content: 'This is a custom notification message!'
+        })
+    })
+
+    ssi_modal.imgBox({
+        title: true,
+        animation: true,
+        center: true,
+        iframe: {className: 'idd'}
+    }, 'landscapes');
+    ssi_modal.imgBox({
+        imgTitle: false,
+        backdropAnimation: true,
+        modalAnimation: {
+            'show': 'animated  rotateInDownLeft',
+            hide: 'animated  rotateOutDownLeft'
+        }
+    }, 'bands');
+
+
 </script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
-<script src="scripts/bundle.js"></script>
-<![endif]-->
 </body>
 </html>
