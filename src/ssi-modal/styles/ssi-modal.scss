@@ -677,6 +677,7 @@ body.ssi-modalOpen {
               @include sprite($left-h);
             }
           }
+
           .ssi-modalNext {
             width: 75%;
             float: right;
@@ -809,7 +810,7 @@ body.ssi-modalOpen {
   transform: translateY(-50%);
   width: 32px;
   height: 32px;
-  background: url("../images/loader.gif") no-repeat;
+  background: url("images/loader.gif") no-repeat;
 }
 .ssi-navFadeOut{
   opacity: 0 !important;

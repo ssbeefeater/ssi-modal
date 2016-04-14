@@ -26,8 +26,8 @@ var config = {
         js: './src/scripts/**/*.js',
         ssi_modalJs: './src/ssi-modal/js/ssi-modal.js',
         ssi_modalSass: './src/ssi-modal/styles/ssi-modal.scss',
-        ssi_modalImage: './src/ssi-modal/images/**/*.{png,jpg}',
-        ssi_modalImage2: './src/ssi-modal/images/**/*.gif',
+        ssi_modalImage: './src/ssi-modal/styles/images/**/*.{png,jpg}',
+        ssi_modalImage2: './src/ssi-modal/styles/images/**/*.gif',
         dist: './dist',
         mainJs: './src/scripts/main.js'
     },
@@ -40,10 +40,14 @@ gulp.task('sprites', function () {
     return sprity.src({
          src: config.paths.ssi_modalImage,
          style: './sprite.scss',
+        cssPath:'images/',
          processor: 'sass'// make sure you have installed sprity-sass
      })
-     .pipe(gulpif('*.png', gulp.dest('./dist/ssi-modal/images/'), gulp.dest('./src/ssi-modal/styles/')))
+     .pipe(gulpif('*.png', gulp.dest('./dist/ssi-modal/styles/images/'), gulp.dest('./src/ssi-modal/styles/')))
 });
+
+
+
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
@@ -114,7 +118,7 @@ gulp.task('images', function () {
 });
 gulp.task('images2', function () {
     gulp.src(config.paths.ssi_modalImage2)
-        .pipe(gulp.dest(config.paths.dist + '/ssi-modal/images'))
+        .pipe(gulp.dest(config.paths.dist + '/ssi-modal/styles/images'))
         .pipe(browserSync.reload({stream:true}));
 });
 
