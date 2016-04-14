@@ -1,0 +1,12 @@
+{
+  "name": "ssi-modal",
+  "version": "1.0.4",
+  "main": "ssi-modal/js/ssi-modal.js",
+  "description": "A flexible and powerful modal window.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jquery": ">1.9.x"
+  }
+}
