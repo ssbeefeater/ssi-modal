@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>ie examples</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- endbuild -->
     <link rel="stylesheet" href="css/bundle.css"/> <!-- endbuild -->
-    <link rel="stylesheet" href="ssi-modal/styles/ssi-modal.css"/> <!-- endbuild -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css"/>
     <!-- endbuild -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css"/>
+    <link rel="stylesheet" href="ssi-modal/styles/ssi-modal.css"/> <!-- endbuild -->
     <!-- endbuild -->
 </head>
 <body>
@@ -94,10 +94,13 @@
                     title="Metallica"
                     class="ssi-imgBox awesome"> <img
                     src="http://www.rockhard.gr/sites/default/files/field/image/master_of_puppets_album.jpg"/> </a></td>
-        <td><a data-ssi_imgGroup="landscapes" href="https://player.vimeo.com/video/29950141?byline=0&portrait=0" title="Landscapes"
-               class="ssi-imgBox"> <img src="https://pbs.twimg.com/profile_images/640687635946565632/5pRp2WLy.jpg"/> </a> <a
+        <td> <a
                 data-ssi_imgGroup="landscapes" title="Canada"
-                href="http://images.nationalgeographic.com/wpf/media-live/photos/000/714/overrides/canada-view-niblet_71483_600x450.jpg" class="ssi-imgBox"> <img src="http://images.nationalgeographic.com/wpf/media-live/photos/000/714/overrides/canada-view-niblet_71483_600x450.jpg"/> </a> <a
+                href="http://images.nationalgeographic.com/wpf/media-live/photos/000/714/overrides/canada-view-niblet_71483_600x450.jpg" class="ssi-imgBox"> <img src="http://images.nationalgeographic.com/wpf/media-live/photos/000/714/overrides/canada-view-niblet_71483_600x450.jpg"/> </a>
+            <a data-ssi_imgGroup="landscapes" href="https://player.vimeo.com/video/29950141?byline=0&portrait=0" title="Landscapes"
+               class="ssi-imgBox"> <img src="https://pbs.twimg.com/profile_images/640687635946565632/5pRp2WLy.jpg"/> </a>
+
+            <a
                 data-ssi_imgGroup="landscapes" href="http://learnmyshot.com/wp-content/uploads/living_landscapes_ebook-65.jpg" title="Paradise"
                 class="ssi-imgBox"> <img src="http://learnmyshot.com/wp-content/uploads/living_landscapes_ebook-65.jpg"/> </a></td>
         <td><a data-ssi_imgGroup="bands"
@@ -504,7 +507,7 @@
             position: 'center top',
             content: 'This is a custom notification message!'
         })
-    })
+    });
 
     ssi_modal.imgBox({
         title: true,
@@ -513,7 +516,7 @@
         iframe: {className: 'idd'}
     }, 'landscapes');
     ssi_modal.imgBox({
-        imgTitle: false,
+        title: false,
         backdropAnimation: true,
         modalAnimation: {
             'show': 'animated  rotateInDownLeft',

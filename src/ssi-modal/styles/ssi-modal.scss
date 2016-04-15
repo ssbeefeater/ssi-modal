@@ -12,7 +12,7 @@ $stackModalSizeDifference: 100;
 }
 
 @mixin smallMedia {
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 450px) {
     .ssi-modalTitle {
       font-size: 18px;
     }
@@ -721,6 +721,7 @@ body.ssi-modalOpen {
     width: 100%;
   }
   @include smallMedia {
+    padding: 0;
     width: 100%;
   }
   .ssi-modalWindow {
@@ -748,10 +749,37 @@ body.ssi-modalOpen {
       width: 100%;
     }
     @include smallMedia {
+      padding: 0;
+      .ssi-modalContent .ssi-modalNext{
+        span{
+          background-position-x:15px ;
+        }
+        &:hover{
+          span{
+            background-position-x:15px ;
+          }
+        }
+      }
+      .ssi-modalContent .ssi-modalPrev{
+        span{
+          background-position-x:-15px ;
+        }
+        &:hover{
+          span{
+            background-position-x:-15px ;
+          }
+        }
+      }
       width: 100%;
       max-height: 400px;
-      padding: 15px;
+      .ssi-topIcons {
+        margin-top: -10px;
+        margin-right:5%;
+        &.inTitle {
+          margin-top: 15px;
+        }
 
+      }
     }
   }
   .ssi-modalContent {
@@ -783,7 +811,8 @@ body.ssi-modalOpen {
     @include smallMedia {
       width: 100%;
       max-height: 400px;
-      padding: 15px;
+      padding:0;
+
     }
   }
   .ssi-modalContent {

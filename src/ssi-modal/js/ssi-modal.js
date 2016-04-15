@@ -10,7 +10,6 @@
     var openedModals = 0;
     var sharedBackdrop = 0;
     var byKindShare = {
-        imgBox: 0,
         stackModal: 0,
         normalModal: 0
     };
@@ -313,6 +312,7 @@
 
     Ssi_modal.prototype.setPluginName = function (name) {
         this.pluginName = name;
+        byKindShare[name]=0;
         return this;
     };
 
@@ -1164,7 +1164,6 @@
             openedModals = 0;
             sharedBackdrop = 0;
             byKindShare = {
-                imgBox: 0,
                 stackModal: 0,
                 normalModal: 0
             };
@@ -1454,7 +1453,7 @@
 
             var imgHeight = imgBox.setModalHeight(120, true);
             if ((naturalHeight > windowHeight - imgHeight || naturalWidth > windowWidth) && imgBox.options.fixedHeight === true) {
-                var dimensions = AspectRatio(naturalWidth, naturalHeight, windowWidth, windowHeight - imgHeight);
+                var dimensions = AspectRatio(naturalWidth, naturalHeight, windowWidth-100, windowHeight - imgHeight);
                 naturalWidth = dimensions.width;
                 naturalHeight = dimensions.height;
                 if (i > 2) {

@@ -89,12 +89,13 @@ gulp.task('sass', function () {
         .pipe(sass(config.sassOptions))
         .pipe(autoprefixer())
         .pipe(gulp.dest(config.paths.dist + '/ssi-modal/styles'))
+     .pipe(browserSync.reload({stream:true}))
      .pipe(rename({suffix: '.min'}))
      .pipe(sourcemaps.init())
      .pipe(csso())
      .pipe(sourcemaps.write('.'))
-     .pipe(gulp.dest(config.paths.dist + '/ssi-modal/styles'))
-        .pipe(browserSync.reload({stream:true}));
+     .pipe(gulp.dest(config.paths.dist + '/ssi-modal/styles'));
+
 });
 
 gulp.task('images', function () {
