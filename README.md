@@ -2,11 +2,11 @@
 
 ssi-modal is the most flexible and powerful modal window.
 ####Documentation and examples:
-```
+
 [See examples](http://ssbeefeater.github.io/#ssi-modal/examples)
 
 [See documentation](http://ssbeefeater.github.io/#ssi-modal/documentation)
-```
+
 
 ---
 
