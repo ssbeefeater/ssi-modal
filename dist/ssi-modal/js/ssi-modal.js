@@ -1598,7 +1598,7 @@
         if (options.className) {
             options.className += defaults.className || '';
         }
-        options = $.extend({}, defaults, options);
+        options = $.extend(true, defaults, options);
 
         if (options.icon != false) {
             icon = options.icon || type || '';
