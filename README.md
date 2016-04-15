@@ -1,6 +1,15 @@
 # ssi-modal
 
 ssi-modal is the most flexible and powerful modal window.
+####Documentation and examples:
+```
+[See examples](http://ssbeefeater.github.io/#ssi-modal/examples)
+
+[See documentation](http://ssbeefeater.github.io/#ssi-modal/documentation)
+```
+
+---
+
 ####Installation:
 ---
 
@@ -22,14 +31,7 @@ or just include the js and css files
 <link rel="stylesheet" href="dist/ssi-modal/styles/ssi-modal.css"/> 
 ```
 ---
-####Documentation and examples:
-```
-coming soon...
-```
 
-
-
----
 To test it:
 ```sh
 git clone https://github.com/ssbeefeater/ssi-modal.git
@@ -43,5 +45,4 @@ gulp
 ```
 final files are in dist/ssi-modal folder .
 page with examples is in dist/index.html .
-if you want to test it in internet explorer, you can use dist/ieExamples.html .
 ```
