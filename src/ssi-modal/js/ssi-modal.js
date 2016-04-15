@@ -1172,7 +1172,7 @@
         }
     };
 
-//-----------------------------Starts confirm plugin------------------------------------------------------------------
+//-----------------------------Start of confirm plugin------------------------------------------------------------------
 
     ssi_modal.dialog = function (options, method) {
         var defaults = {
@@ -1198,7 +1198,7 @@
 
     //-----------------------------End of dialog plugin------------------------------------------------------------------
 
-//-----------------------------Starts confirm plugin------------------------------------------------------------------
+//-----------------------------Start of confirm plugin------------------------------------------------------------------
 
     ssi_modal.confirm = function (options, method) {
         var defaults = {
@@ -1239,9 +1239,9 @@
         return new Ssi_modal(options).init().show();
     };
 
-    //--------------------------------End of dialog plugin--------------------------------------------------
+    //--------------------------------End of confirm plugin--------------------------------------------------
 
-//-----------------------------Starts imgBox plugin------------------------------------------------------------------
+//-----------------------------Start of imgBox plugin------------------------------------------------------------------
 
     var imgBoxOptions = {'ssi-mainOption': {}};//this will hold the imgbox options when will call ssi_modal.imgBox function
     ssi_modal.imgBox = function (options, group) {//set options for the image box
@@ -1501,7 +1501,7 @@
 
 //-----------------------------End of imgBox plugin------------------------------------------------------------------
 
-//--------------------------------End of notify plugin--------------------------------------------------
+//--------------------------------Start of notify plugin--------------------------------------------------
     ssi_modal.notify = function (type, options, callback) {
         var defaults = {
             closeIcon: false,
@@ -1618,6 +1618,53 @@
          .init().show();
     };
 //--------------------------------End of notify plugin--------------------------------------------------
+
+
+//--------------------------------Start of jquery selector plugin--------------------------------------------------
+
+    $.fn.ssi_modal = function () {
+        var opts;
+        if (typeof arguments[1] === 'object') {
+            var action = arguments[0];
+            opts = arguments[1] || {};
+            var callback = arguments[2];
+        } else {
+            opts = arguments[0] || {};
+        }
+        return this.each(function () {
+            var element = $(this), options;
+            if (opts.content) {//that means that we will not use any div element for content
+                element.click(function () {
+                    switch (action) {//action could be show,dialog or confirm
+                        case 'show':
+                            ssi_modal['show'](opts, element);
+                            break;
+                        default:
+                            ssi_modal[action](opts, callback);
+                    }
+                })
+            } else {
+                var content, def, dataAttr = element.attr('data-ssi_modal');
+                if (dataAttr) {// that means the content is an element.  data-ssi_modal shows the elements selector
+                    element.click(function () {//set click event
+                        content = $(dataAttr);
+                        def = {
+                            content: content
+                        };
+                        options = $.extend({}, opts, def);
+                        ssi_modal.createObject(options).init().show();
+                    });
+                } else {//that means the target is the element that contains the content
+                    def = {
+                        content: element
+                    };
+                    options = $.extend({}, opts, def);
+                    ssi_modal.createObject(options).init().show();
+                }
+            }
+        });
+    };
+//--------------------------------End of jquery selector plugin--------------------------------------------------
 
     /**
      * Adds animation to an element

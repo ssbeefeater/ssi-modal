@@ -546,7 +546,7 @@ body.ssi-modalOpen {
 
 
 
-//imgBox Starts
+/*------------------------Start of imgBox plugin------------------------------*/
 .ssi-backdrop.imgBox {
   background: rgba(0, 0, 0, 0.87);
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#CC000000', endColorstr='#CC000000'); /* IE */
@@ -819,11 +819,13 @@ body.ssi-modalOpen {
   transition: opacity .4s;
 }
 
-//imgBox end
+/*------------------------End of imgBox plugin------------------------------*/
 
 
 
-//notify start
+
+/*------------------------Start of notify plugin------------------------------*/
+
 .notify {
   &.ssi-modalWindow {
     padding-top: 12px;
@@ -943,5 +945,4 @@ body.ssi-modalOpen {
     }
   }
 }
-
-//notify end
+/*------------------------End of notify plugin------------------------------*/

@@ -1,19 +1,18 @@
-$Del-h: -0px -0px 24px 24px;
-$DelImg: -0px -24px 24px 24px;
-$exitFs-h: -0px -48px 24px 24px;
-$exitFs: -0px -72px 24px 24px;
-$fullscreen-h: -0px -96px 24px 24px;
-$fullscreen: -0px -120px 24px 24px;
-$Del: -0px -144px 24px 24px;
+$fullscreen: -0px -0px 24px 24px;
+$Del-h: -0px -24px 24px 24px;
+$DelImg: -0px -48px 24px 24px;
+$Del: -0px -72px 24px 24px;
+$exitFs-h: -0px -96px 24px 24px;
+$exitFs: -0px -120px 24px 24px;
+$fullscreen-h: -0px -144px 24px 24px;
 $error: -0px -168px 33px 33px;
-$warning: -0px -201px 33px 33px;
+$info: -0px -201px 33px 33px;
 $success: -0px -234px 33px 33px;
-$info: -0px -267px 33px 33px;
-$left: -0px -300px 56px 56px;
-$right-h: -0px -356px 56px 56px;
-$right: -0px -412px 56px 56px;
-$left-h: -0px -468px 56px 56px;
-$sprite: -0px -524px 80px 1596px;
+$warning: -0px -267px 33px 33px;
+$left-h: -0px -300px 56px 56px;
+$left: -0px -356px 56px 56px;
+$right-h: -0px -412px 56px 56px;
+$right: -0px -468px 56px 56px;
 @mixin sprite-width($sprite) {
   width: nth($sprite, 3);
 }

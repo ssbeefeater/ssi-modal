@@ -10,6 +10,8 @@ var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
 var gulpif = require('gulp-if');
 var sprity = require('sprity');
+var csso = require('gulp-csso');
+var rename = require('gulp-rename')
 var config = {
     port: 9005,
     devBaseUrl: 'http://localhost',
@@ -26,7 +28,7 @@ var config = {
     },
     sassOptions: {
         errLogToConsole: true,
-        outputStyle: 'compressed'
+        outputStyle: 'expanded'
     }
 };
 gulp.task('sprites', function () {
@@ -84,11 +86,14 @@ gulp.task('js', function () {
 
 gulp.task('sass', function () {
     gulp.src(config.paths.ssi_modalSass)
-        .pipe(sourcemaps.init())
-        .pipe(sass(config.sassOptions).on('error', sass.logError))
+        .pipe(sass(config.sassOptions))
         .pipe(autoprefixer())
-        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.paths.dist + '/ssi-modal/styles'))
+     .pipe(rename({suffix: '.min'}))
+     .pipe(sourcemaps.init())
+     .pipe(csso())
+     .pipe(sourcemaps.write('.'))
+     .pipe(gulp.dest(config.paths.dist + '/ssi-modal/styles'))
         .pipe(browserSync.reload({stream:true}));
 });
 

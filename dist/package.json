@@ -1,6 +1,6 @@
 {
   "name": "ssi-modal",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "ssi-modal/js/ssi-modal.js",
   "description": "A flexible and powerful modal window.",
   "scripts": {
