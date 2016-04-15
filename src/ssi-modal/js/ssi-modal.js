@@ -1606,7 +1606,7 @@
         if (options.title != false) {
             title = options.title || type;
         }
-        if ((options.icon != false && !options.title != false)&& icon!='') {
+        if ((options.icon != false && options.title != false) && icon!='') {
             options.title = generateIcon(icon) + ' ' + title;
         }
         if (options.backdrop === true) {
