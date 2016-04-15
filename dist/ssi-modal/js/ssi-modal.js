@@ -15,8 +15,6 @@
         normalModal: 0
     };
     var uniqueId = 0;
-    var modalAnimationIn = '';
-    var backdropAnimationIn = '';
     var orphanBackdrop = false;
 
     /**
@@ -439,21 +437,19 @@
         var inAnim,
          outAnim;
 
-        inAnim = (modalAnimationIn !== '' ? modalAnimationIn : changeAnimations((typeof modalAnim.show !== 'undefined' ? modalAnim.show : modalAnim), 'show'));
+        inAnim =changeAnimations((typeof modalAnim.show !== 'undefined' ? modalAnim.show : modalAnim), 'show');
         outAnim = changeAnimations((typeof modalAnim.hide !== 'undefined' ? modalAnim.hide : modalAnim), 'hide');
         modalObj.options.modalAnimation = {
             'show': inAnim,
             'hide': outAnim
         };
 
-        inAnim = (backdropAnimationIn !== '' ? backdropAnimationIn : changeAnimations((typeof backdropAnim.show !== 'undefined' ? backdropAnim.show : backdropAnim), 'show'));
+        inAnim = changeAnimations((typeof backdropAnim.show !== 'undefined' ? backdropAnim.show : backdropAnim), 'show');
         outAnim = changeAnimations((typeof backdropAnim.hide !== 'undefined' ? backdropAnim.hide : backdropAnim), 'hide');
         modalObj.options.backdropAnimation = {
             'show': inAnim,
             'hide': outAnim
         };
-        modalAnimationIn = '';
-        backdropAnimationIn = '';
         if (animationSupport === false) {
             modalObj.options.modalAnimation = {
                 'show': (modalObj.options.modalAnimation.show !== 'ssi-show' ? 'anim ssi-fadeIn' : 'ssi-show'),
@@ -688,35 +684,15 @@
                 keyPress();
             }
         }
-        var setNewAnimation = function (item) {
-            if (typeof buttonOptions[item] !== 'undefined') {
-                if (typeof buttonOptions[item] === 'boolean') {
-                    modalObj.options[item].hide = changeAnimations(buttonOptions.modalAnimation, 'hide');
-                    modalAnimationIn = buttonOptions[item];
-                } else {
-                    if (typeof buttonOptions[item].show !== 'undefined') {
-                        modalAnimationIn = buttonOptions[item].show;
-                    }
-                    if (typeof buttonOptions[item].hide !== 'undefined') {
-                        modalObj.options[item].hide = changeAnimations(buttonOptions[item].hide, 'hide');
-                    }
-                }
-            }
-        };
-
         return $btn.click(function (e) {
             e.preventDefault();
             if (buttonOptions.clearTimeOut) {
                 clearTimeOut(modalObj);
             }
-
-            setNewAnimation('modalAnimation');
-            setNewAnimation('backdropAnimation');
             if (typeof buttonOptions.method === 'function') {
                 resume = $.proxy(buttonOptions.method, this)(e, modalObj);
             }
             if (resume === false) {
-                modalAnimationIn = '';
                 return;
             }
             if (typeof buttonOptions.keepContent === 'boolean' && buttonOptions.keepContent !== modalObj.options.keepContent) {
@@ -1193,8 +1169,6 @@
                 normalModal: 0
             };
             uniqueId = 0;
-            modalAnimationIn = '';
-            backdropAnimationIn = '';
         }
     };
 
