@@ -10,7 +10,7 @@
     var openedModals = 0;
     var sharedBackdrop = 0;
     var byKindShare = {
-        imgModal: 0,
+        imgBox: 0,
         stackModal: 0,
         normalModal: 0
     };
@@ -1146,7 +1146,7 @@
         },
         /**
          * Closes all or a group of modals.
-         * @param {'normalModal'||'imgModal'||'stackModal'} group
+         * @param {'normalModal'||'pluginName'} group
          * @param {className} except -The modal with this class will not close
          */
         proto: Ssi_modal.prototype,
@@ -1188,7 +1188,7 @@
             openedModals = 0;
             sharedBackdrop = 0;
             byKindShare = {
-                imgModal: 0,
+                imgBox: 0,
                 stackModal: 0,
                 normalModal: 0
             };
@@ -1299,7 +1299,7 @@
         return this;
     };
 
-    $('body').on('click.ssi-imgModal', 'a.ssi-imgBox', function (e) {//click event handler for all links with ssi-imgbox class
+    $('body').on('click.ssi-imgBox', 'a.ssi-imgBox', function (e) {//click event handler for all links with ssi-imgbox class
         e.preventDefault();
         var defaults = {//set defaults
             backdrop: 'byKindShared',
@@ -1343,7 +1343,7 @@
         });
         var url = $eventTarget.attr('href');
         var imgBox = ssi_modal.createObject(options)
-         .setPluginName('imgModal');
+         .setPluginName('imgBox');
 
         imgBox.imgUrl = url;
         imgBox.imgTitle = options.title;
