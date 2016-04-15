@@ -811,7 +811,10 @@
     Ssi_modal.prototype.showModal = function () {
         var $modalOuter = this.get$modal(),
          modalObj = this;
-        $modalOuter.trigger("beforeShow.ssi-modal");//trigger show event
+        $modalOuter.trigger({
+            type: "beforeShow.ssi-modal",
+            modal: modalObj
+        });//trigger show event
 
         if (this.options.bodyScroll === false) {
             $('body').addClass('ssi-modalOpen');//add this class to body to disable scrollbar
@@ -915,7 +918,7 @@
     Ssi_modal.prototype.destroyModal = function () {
         var $modalOuter = this.get$modal(),
          modalObj = this;
-        $modalOuter.trigger("beforeClose.ssi-modal"); //trigger close event
+        $modalOuter.trigger({type: "beforeClose.ssi-modal", modal: modalObj}); //trigger close event
         $modalOuter.off('.ssi_modal');
         if (this.options.keepContent !== true) {
             $modalOuter.off('.ssi-modal').find('#ssi-modalWrapper').off('.ssi-modal');
@@ -946,7 +949,7 @@
             }
             if (typeof modalObj.options.onClose === 'function')
                 modalObj.options.onClose(modalObj);//execute onClose callback
-            $modalOuter.trigger("onClose.ssi-modal"); //trigger close event
+            $modalOuter.trigger({type: "onClose.ssi-modal", modal: modalObj}); //trigger close event
         };
 
         //close the modal window
