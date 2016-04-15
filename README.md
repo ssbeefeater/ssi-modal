@@ -1,7 +1,11 @@
 # ssi-modal
 
-ssi-modal is the most flexible and powerful modal window.
-####Documentation and examples:
+
+The most flexible and powerful modal window.<br />
+&nbsp;&nbsp;Download once, do it all.
+
+#### Documentation and examples:
+
 
 [See examples](http://ssbeefeater.github.io/#ssi-modal/examples)
 
@@ -11,12 +15,16 @@ ssi-modal is the most flexible and powerful modal window.
 ---
 
 ####Installation:
----
+
 
 Install with [npm](https://www.npmjs.com/)
 
 ```sh
 npm install ssi-modal
+```
+```javascript
+var ssi_modal=require('ssi-modal');
+ssi_modal.show({content:'Hello world'});
 ```
 
 Install with [bower](http://bower.io/)
@@ -32,7 +40,7 @@ or just include the js and css files
 ```
 ---
 
-To test it:
+######To test it:
 ```sh
 git clone https://github.com/ssbeefeater/ssi-modal.git
 cd ssi-modal

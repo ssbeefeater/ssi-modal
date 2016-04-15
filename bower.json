@@ -23,6 +23,7 @@
     "node_modules",
     "bower_components",
     ".npmignore",
+    ".gitignore",
     "/src",
     "package.json",
     "gulpfile.js"
