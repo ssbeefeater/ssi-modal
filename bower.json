@@ -31,5 +31,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ssbeefeater/ssi-modal.git"
-  }
+  },
+  "homepage":"http://ssbeefeater.github.io/"
 }

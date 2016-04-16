@@ -48,9 +48,3 @@ npm install
 gulp
 ```
 
-######Notes
-
-```
-final files are in dist/ssi-modal folder .
-page with examples is in dist/index.html .
-```

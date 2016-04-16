@@ -112,4 +112,4 @@ gulp.task('watch', function () {
     gulp.watch(config.paths.ssi_modalImage, ['sprites']);
 });
 
-gulp.task('default', ['compile','html','css', 'sass','sprites', 'images', 'js','browser-sync', 'watch']);
+gulp.task('default', ['html','css', 'sass', 'images', 'js','browser-sync', 'watch']);
