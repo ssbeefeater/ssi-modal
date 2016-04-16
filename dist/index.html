@@ -160,12 +160,12 @@
     }, 'bands');
     $('#modal').click(function () {
         ssi_modal.show({
-            content: 'Hello World'
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Hello World'
         });
     });
     $('#modal1').click(function () {
         ssi_modal.show({
-            content: 'Hello World',
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Hello World',
             sizeClass: 'small',
             title: 'Featured modal',
             animation: true
@@ -173,7 +173,7 @@
     });
     $('#modal2').click(function () {
         ssi_modal.confirm({
-                    content: 'Are you sure you want to exit?',
+                    content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Are you sure you want to exit?',
                     okBtn: {
                         className: 'btn btn-primary'
                     },
@@ -182,18 +182,18 @@
                     }
                 }, function (result) {
                     if (result)
-                        ssi_modal.notify('success', {content: 'Result: ' + result});
+                        ssi_modal.notify('success', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Result: ' + result});
                     else
-                        ssi_modal.notify('error', {content: 'Result: ' + result});
+                        ssi_modal.notify('error', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Result: ' + result});
                 }
         );
     });
     $('#modal2a').click(function () {
-        ssi_modal.dialog({content: 'Hello World', okBtn: {className: 'btn btn-primary'}});
+        ssi_modal.dialog({content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Hello World', okBtn: {className: 'btn btn-primary'}});
     });
     $('#modal3').click(function () {
         ssi_modal.show({
-            content: 'Hello World',
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Hello World',
             title: 'Modal with buttons',
             buttons: [{
                 className: 'btn btn-primary',
@@ -201,25 +201,25 @@
                 enableAfter: 3,
                 closeAfter: false,
                 method: function () {
-                    ssi_modal.notify('info', {content: 'Ok'})
+                    ssi_modal.notify('info', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Ok'})
                 }
             }, {
                 className: 'btn btn-danger',
                 label: 'Cancel',
                 closeAfter: true,
                 method: function () {
-                    ssi_modal.notify('error', {content: 'Cancel'})
+                    ssi_modal.notify('error', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Cancel'})
                 }
             }]
         });
 
     });
     $('#modal4').click(function () {
-        ssi_modal.show({content: '<input type="text"/>', keepContent: true}, '#modal5')
+        ssi_modal.show({content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> <input type="text"/>', keepContent: true}, '#modal5')
     });
     $('#modal4a').click(function () {
         ssi_modal.show({
-            content: '<form>' +
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> <form>' +
             '<label for="name">Your name:</label><br/>' +
             '<input id="name" class="input" name="name" type="text"/><br/>' +
             '<label for="email">Your email:</label><br/>' +
@@ -233,7 +233,7 @@
             beforeClose: function (modal) {
                 ssi_modal.confirm({
                     position: 'top center',
-                    content: 'Your content will be lost! Are you sure you want to continue?',
+                    content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Your content will be lost! Are you sure you want to continue?',
                     okBtn: {className: 'btn btn-primary'},
                     cancelBtn: {className: 'btn btn-danger'}
                 }, function (result) {
@@ -276,34 +276,34 @@
     $('#modal5').click(function () {
 
         ssi_modal.show({
-            content: '<button id="modal6b" class="btn btn-primary">Open modal</button>',
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> <button id="modal6b" class="btn btn-primary">Open modal</button>',
             sizeClass: 'medium',
             title: 'Modal with buttons',
             fitScreen: true,
             fixedHeight: true,
             onClose: function () {
-                ssi_modal.notify('error', {content: 'first closed'})
+                ssi_modal.notify('error', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> first closed'})
             }
         });
     });
     $body.on('click.example', '#modal6b', function () {
 
         ssi_modal.show({
-            content: '<button id="modal6c" class="btn btn-primary">Open modal</butto>',
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> <button id="modal6c" class="btn btn-primary">Open modal</butto>',
             sizeClass: 'small',
             title: 'Second modal',
             onClose: function () {
-                ssi_modal.notify('warning', {content: 'Second closed'})
+                ssi_modal.notify('warning', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Second closed'})
             }
         });
     });
     $body.on('click.example', '#modal6c', function () {
         ssi_modal.show({
-            content: '<a href="images/3b5dd04be82af929dd3070cb089bcf03.jpg" title="My landscape" class="ssi-imgBox"><img src="images/3b5dd04be82af929dd3070cb089bcf03.jpg" style="width:50px;height:50px"/></a>',
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> <a href="images/3b5dd04be82af929dd3070cb089bcf03.jpg" title="My landscape" class="ssi-imgBox"><img src="images/3b5dd04be82af929dd3070cb089bcf03.jpg" style="width:50px;height:50px"/></a>',
             sizeClass: 'dialog',
             title: 'Third modal',
             onClose: function () {
-                ssi_modal.notify('info', {content: 'Third closed'})
+                ssi_modal.notify('info', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Third closed'})
             }
         });
     });
@@ -313,16 +313,16 @@
             className: 'awesomeModal',
             title: 'Callbacks',
             beforeShow: function (modal) {
-                ssi_modal.notify('info', {content: 'The modal with title: ' + modal.options.title + ' will open'});
+                ssi_modal.notify('info', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> The modal with title: ' + modal.options.title + ' will open'});
             },
             onShow: function (modal) {
-                ssi_modal.notify('success', {content: 'The modal with className: ' + modal.options.className + ' just opened'});
+                ssi_modal.notify('success', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> The modal with className: ' + modal.options.className + ' just opened'});
             },
             beforeClose: function (modal) {
-                ssi_modal.notify('warning', {content: 'The modal with title: ' + modal.options.title + ' will close'});
+                ssi_modal.notify('warning', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> The modal with title: ' + modal.options.title + ' will close'});
             },
             onClose: function (modal) {
-                ssi_modal.notify('error', {content: 'The modal with className: ' + modal.options.className + ' just closed'});
+                ssi_modal.notify('error', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> The modal with className: ' + modal.options.className + ' just closed'});
             }
         });
     });
@@ -335,7 +335,7 @@
     });
     $('#modal7a').click(function () {
         ssi_modal.show({
-            content: ' ',
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a>  ',
             title: 'Fixed height',
             fixedHeight: true,
             buttons: [{
@@ -347,7 +347,7 @@
     });
     $('#modal7b').click(function () {
         ssi_modal.show({
-            content: 'Hello world',
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Hello world',
             title: 'Fit screen',
             fixedHeight: true,
             fitScreen: true,
@@ -413,7 +413,7 @@
         ssi_modal.show({
             title: 'stackModal left top',
             position: 'left top',
-            content: '<button id="modal11a" class="btn btn-primary">Open modal</button>',
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> <button id="modal11a" class="btn btn-primary">Open modal</button>',
             backdrop: false,
             stack: true
         })
@@ -422,7 +422,7 @@
         ssi_modal.show({
             title: 'stackModal right top',
             position: 'right top',
-            content: '<button id="modal11" class="btn btn-primary">Open modal</button>',
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> <button id="modal11" class="btn btn-primary">Open modal</button>',
             backdrop: false,
             stack: true
         })
@@ -432,7 +432,7 @@
 
     $('#notify').click(function () {
         ssi_modal.notify('success', {
-            content: 'You have successfully upload the file!',
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> You have successfully upload the file!',
             modalAnimation: {
                 'show': 'animated fadeInRight mediumSpeed',
                 'hide': 'animated  fadeOutRight mediumSpeed'
@@ -445,16 +445,16 @@
         ssi_modal.notify('error', {
             position: 'left top',
             backdrop: 'shared', outSideClose: true,
-            content: 'An error occurred.',
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> An error occurred.',
             buttons: [
                 {
                     label: 'Shared backdrop', className: 'btn btn-default btn-xs', method: function () {
-                    ssi_modal.notify('info', {content: 'hi', outSideClose: true, backdrop: 'shared'})
+                    ssi_modal.notify('info', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> hi', outSideClose: true, backdrop: 'shared'})
                 }
                 },
                 {
                     label: 'Without backdrop', className: 'btn btn-default btn-xs', method: function () {
-                    ssi_modal.notify('warning', {content: 'hi'})
+                    ssi_modal.notify('warning', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> hi'})
                 }
                 }
             ]
@@ -462,12 +462,12 @@
     });
     //====== left bottom ======
     $("#notify3").click(function () {
-        ssi_modal.notify('info', {position: 'right bottom', content: 'Hello there'})
+        ssi_modal.notify('info', {position: 'right bottom', content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Hello there'})
     });
     $('#notify4').click(function () {
         ssi_modal.notify('warning', {
             position: 'left bottom',
-            content: 'You have to register first to see the content!'
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> You have to register first to see the content!'
         })
     });
     //====== center top ======
@@ -477,7 +477,7 @@
             sizeClass: 'medium',
             okBtn: {className: 'btn btn-primary'},
             position: 'center top',
-            content: 'This site uses cookies to provide better services!'
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> This site uses cookies to provide better services!'
         }, function () {
         })
     });
@@ -489,12 +489,12 @@
             okBtn: {className: 'btn btn-primary'},
             cancelBtn: {className: 'btn btn-danger'},
             position: 'center bottom',
-            content: 'Are you sure you want to exit?'
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Are you sure you want to exit?'
         }, function (result) {
             if (result) {
-                ssi_modal.notify('success', {content: 'Result: ' + result})
+                ssi_modal.notify('success', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Result: ' + result})
             } else {
-                ssi_modal.notify('error', {content: 'Result: ' + result})
+                ssi_modal.notify('error', {content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> Result: ' + result})
             }
         })
     });
@@ -505,7 +505,7 @@
             sizeClass: 'full',
             icon: 'fa fa-glass',
             position: 'center top',
-            content: 'This is a custom notification message!'
+            content: '<a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a> This is a custom notification message!'
         })
     });
 

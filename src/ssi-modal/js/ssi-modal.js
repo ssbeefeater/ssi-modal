@@ -739,16 +739,17 @@
                 $modal.one('onShow.ssi-modal', function () {
                     if (modalObj.options.outSideClose === true) {
                         $modal.click(function (e) {
-                            e.preventDefault();
-                            if (e.target !== this)
-                                return;
-                            modalObj.close();
+                            if (e.target === this){
+                                e.preventDefault();
+                                modalObj.close();
+                            }
                         });
                         wrapper.click(function (e) {
-                            e.preventDefault();
-                            if (e.target !== this)
-                                return;
-                            modalObj.close();
+                            if (e.target=== this){
+                                e.preventDefault();
+                                modalObj.close();
+                            }
+
                         });
                     }
                 })
