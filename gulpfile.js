@@ -62,6 +62,7 @@ gulp.task('compile', function () {
                       create_source_map: config.paths.dist+'/ssi-modal/js/ssi-modal.min.js.map'
                   }
               }))
+         .on('error', console.error.bind(console))
               .pipe(sourcemaps.write('.'))
               .pipe(gulp.dest(config.paths.dist+'/ssi-modal/js/'));
 
@@ -81,7 +82,8 @@ gulp.task('html', function () {
 gulp.task('js', function () {
     gulp.src(config.paths.ssi_modalJs)
      .on('error', console.error.bind(console))
-     .pipe(gulp.dest(config.paths.dist+'/ssi-modal/js'));
+     .pipe(gulp.dest(config.paths.dist+'/ssi-modal/js'))
+    .pipe(browserSync.reload({stream:true}));
 });
 
 gulp.task('sass', function () {

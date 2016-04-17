@@ -139,25 +139,6 @@
 <script src="ssi-modal/js/ssi-modal.js"></script>
 <script>
     var $body = $('body');
-    ssi_modal.imgBox({
-        imgTitle: true,
-        animation: true,
-        center: true
-    }, 'landscapes');
-    ssi_modal.imgBox({
-        imgTitle: false,
-        buttons: [{
-            label: 'next',
-            callback: function (e, thisS) {
-                thisS.navigate('next');
-            }
-        }],
-        backDropAnimation: true,
-        modalAnimation: {
-            'show': 'animated  rotateInDownLeft',
-            hide: 'animated  rotateOutDownLeft'
-        }
-    }, 'bands');
     $('#modal').click(function () {
         ssi_modal.show({
             content: 'Hello World'

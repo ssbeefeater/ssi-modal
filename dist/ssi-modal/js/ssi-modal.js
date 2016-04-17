@@ -375,7 +375,7 @@
         var $buttonsArea, fixHeight = false;
         buttons = toArray(buttons);
         if (area !== false) {
-            area = $(area) || this.get$window();
+            area = (typeof area!=='undefined'?$(area):this.get$window());
             $buttonsArea = area.find('#ssi-buttons');
             $buttonsArea = $buttonsArea[0];
         }
