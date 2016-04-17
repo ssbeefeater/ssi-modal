@@ -112,6 +112,7 @@
                 backdrop: true,
                 stack: false,
                 onClickClose: false,
+                bodyElement:false,
                 className: '',
                 backdropClassName: '',
                 preview: {
@@ -143,7 +144,6 @@
                 fixedHeight: false,
                 fitScreen: false
             };
-
             var modalObj = this;
             this.options = $.extend(true, defaults, options);
             this.options.iconButtons = toArray(this.options.iconButtons);
@@ -340,7 +340,7 @@
             $modalContent = this.get$content();
         }
         var theContent = content;
-        if (content instanceof $) {
+        if (content instanceof $ && this.options.bodyElement===true) {
             if (this.options.extendOriginalContent === true) {
                 this.options.beforeClose = function (modal) {
                     var resume;
