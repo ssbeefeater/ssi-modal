@@ -1117,7 +1117,10 @@
          * @param {string} $target
          */
         close: function ($target) {
-            $target = $(target) || $('.ssi-modalWindow').eq(0);
+            if(!$target){
+                var modal= $('.ssi-modalOuter');
+                $target = modal.eq(modal.length-1);
+            }
             return $target.data('ssi-modal')
              .close();
         },
@@ -1259,7 +1262,7 @@
      * @returns {Ssi_modal}
      */
     ssi_modal.proto.navigate = function (direction) {
-      var  $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]');
+        var  $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]');
         if(!currentIndex)currentIndex = $groupElements.index($eventTarget);
         if(!$elementsLength)$elementsLength=$groupElements.length;
         if ((direction === 'next' && currentIndex + 1 >= $elementsLength) || (direction === 'prev' && currentIndex < 0)) {
