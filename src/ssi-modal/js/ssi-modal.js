@@ -1269,7 +1269,7 @@
         } else if (direction === 'prev') {//previous image
             currentIndex--;
         }
-        $groupElements.eq(currentIndex).trigger('click');
+        $groupElements.eq(currentIndex).trigger('click.ssi-imgBox');
         return this;
     };
 
