@@ -1249,8 +1249,8 @@
         imgBoxOptions[group] = $.extend({}, imgBoxOptions['ssi-mainOption'], options);
     };
 
-    var $groupElements,
-     currentIndex,
+    var     currentIndex,
+     $elementsLength,
      $eventTarget;
 
     /**
@@ -1259,7 +1259,9 @@
      * @returns {Ssi_modal}
      */
     ssi_modal.proto.navigate = function (direction) {
-        var $elementsLength = $groupElements.length;
+      var  $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]');
+        if(!currentIndex)currentIndex = $groupElements.index($eventTarget);
+        if(!$elementsLength)$elementsLength=$groupElements.length;
         if ((direction === 'next' && currentIndex + 1 >= $elementsLength) || (direction === 'prev' && currentIndex < 0)) {
             return this;
         }
@@ -1327,8 +1329,6 @@
         }
 
         imgBox.show();
-        $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]');
-        currentIndex = $groupElements.index($eventTarget);
         setImg(imgBox, url);
         return false
     });
@@ -1402,7 +1402,9 @@
         }
 
         function setImgNavigation() {
-            var $elementsLength = $groupElements.length,
+            var  $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]');
+            currentIndex = $groupElements.index($eventTarget);
+            $elementsLength = $groupElements.length,
              $nav = $('<div class="ssi-modalNavigation"></div>'),
              $next = $('<div class="ssi-modalNext ' + (currentIndex + 1 >= $elementsLength ? 'ssi-hidden' : '') + '"><span></span></div>')
               .on('click.ssi_modal', function (e) {
