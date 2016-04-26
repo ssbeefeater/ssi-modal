@@ -643,9 +643,8 @@
             modalAnimation: '',
             backdropAnimation: ''
         };
-        var modalObj = this;
         buttonOptions = $.extend({}, defaults, buttonOptions);
-        var tag = 'button', href = '';
+        var tag = 'button', href = '',modalObj = this,resume;
         if (buttonOptions.type === 'link') {//set tag type (<a> or <button>)
             tag = 'a';
             href = ' href="#"';
@@ -653,7 +652,6 @@
         var $btn = $('<' + tag + href + (buttonOptions.id ? ' id="' + buttonOptions.id + '"' : ' ') + (buttonOptions.enableAfter ? 'disabled ' : '') + ' class="ssi-modalBtn ' + (buttonOptions.className || '') + '">'
          + buttonOptions.label +
          '</' + tag + '>');
-        var enableAfter;
         if (typeof buttonOptions.enableAfter === 'number') {
             var $count = $('<span class="ssi-countDown">' + buttonOptions.enableAfter + '</span>');
             updateTime(modalObj, $count, function () {
@@ -662,27 +660,14 @@
                 $count.remove();
             });
             $btn.append($count);
-            enableAfter = buttonOptions.enableAfter;
-        } else {
-            enableAfter = 0;
         }
 //append button to selected object and set click event
         if (buttonOptions.keyPress) {
-            var keyPress = function () {
-                setTimeout(function () {//enables the event when the button is enable
                     $('body').on('keydown.ssi_modal', function (e) {
-                        if (e.keyCode == buttonOptions.keyPress) {
+                        if (e.keyCode == buttonOptions.keyPress && !$btn.is(':disabled')) {
                             $btn.trigger('click');
                         }
                     });
-                }, (enableAfter * 1000));
-            };
-
-            if (buttonOptions.enableAfter == true) {
-                $('body').on('keyPressEnable.ssi_modal', keyPress); //enables the event when trigger a keyPressEnable.ssi_modal event
-            } else {
-                keyPress();
-            }
         }
         return $btn.click(function (e) {
             e.preventDefault();
@@ -700,10 +685,8 @@
             }
             if (buttonOptions.closeAfter) {
                 modalObj.close();
-
 //finally close the modal if closeAfter option is true
             }
-
         });
     };
     /**
