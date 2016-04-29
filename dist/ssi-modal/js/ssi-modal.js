@@ -957,7 +957,7 @@
         }
 
         if (typeof offset !== 'number') {
-            offset = 115;
+            offset = 110;
         }
 
         var $content = this.get$content();
@@ -1388,8 +1388,8 @@ ssi_modal.imgBox.show=function(url,options){
         }
 
         function setImgNavigation() {
-            var  $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]');
-            currentIndex = $groupElements.index($eventTarget);
+            var  $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]'),
+            currentIndex = $groupElements.index($eventTarget),
             $elementsLength = $groupElements.length,
              $nav = $('<div class="ssi-modalNavigation"></div>'),
              $next = $('<div class="ssi-modalNext ' + (currentIndex + 1 >= $elementsLength ? 'ssi-hidden' : '') + '"><span></span></div>')
