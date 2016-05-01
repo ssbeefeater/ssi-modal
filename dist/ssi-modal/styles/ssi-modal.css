@@ -86,7 +86,7 @@ body.ssi-modalOpen {
 
 .ssi-modalWrapper {
   position: relative;
-  margin: 40px auto;
+  margin: 30px auto 0;
   z-index: 1501;
 }
 
@@ -336,6 +336,7 @@ body.ssi-modalOpen {
   margin-top: 0px;
   padding: 5px 15px 10px 15px;
   z-index: 1501;
+  position: relative;
 }
 
 .ssi-modalContent:after {

@@ -104,7 +104,7 @@ body.ssi-modalOpen {
 
 .ssi-modalWrapper {
   position: relative;
-  margin: 40px auto;
+  margin: 30px auto 0;
   z-index: $zIndex+1;
 
   &.full {
@@ -257,7 +257,7 @@ body.ssi-modalOpen {
   margin-top: 0px;
   padding: 5px 15px 10px 15px;
   z-index: $zIndex+1;
-
+position: relative;
   &:after {
     content:" ";
     display:table;
