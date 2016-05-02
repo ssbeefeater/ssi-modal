@@ -769,13 +769,12 @@
     };
 
     Ssi_modal.prototype.showModal = function () {
-        var $modalOuter = this.get$modal(),
+        var $modal = this.get$modal(),
          modalObj = this;
-        $modalOuter.trigger({
-            type: "beforeShow.ssi-modal",
-            modal: modalObj
-        });//trigger show event
 
+        setTimeout(function(){
+            $modal.trigger("beforeShow.ssi-modal");//trigger show event
+        },0);
         if (this.options.bodyScroll === false) {
             $('body').addClass('ssi-modalOpen');//add this class to body to disable scrollbar
             openedModals++;//calculate open modals
@@ -786,19 +785,21 @@
             byKindShare[this.pluginName]++
         }
 
-        $modalOuter.addClass('ssi-openedDialog');
+        $modal.addClass('ssi-openedDialog');
         var callback = function () {
             $(this).removeClass('ssi-hidden');
             if (typeof modalObj.options.onShow === 'function') {
                 modalObj.options.onShow(modalObj);//execute onShow callback
             }
-            $modalOuter.trigger("onShow.ssi-modal");//trigger show event);
+            setTimeout(function(){
+                $modal.trigger("onShow.ssi-modal");//trigger show event);
+            },0);
         };
-        $modalOuter.addAnimation(this.options.modalAnimation.show, function () {
+        $modal.addAnimation(this.options.modalAnimation.show, function () {
             callback();
         }).removeClass('ssi-hidden');
         if (this.options.center) {
-            $modalOuter.css('display', '');
+            $modal.css('display', '');
         }
         if (modalObj.options.preview.state === 'fullScreen') {//if the default state is fullscreen
             modalObj.options.preview.state = 'normal';
@@ -859,6 +860,7 @@
             if ((thisS.options.backdrop === true || (    (   ( thisS.options.backdrop === 'shared' && sharedBackdrop < 1) || ( thisS.options.backdrop === 'byKindShared' && byKindShare[thisS.pluginName] < 1)  ) && ( (!thisS.get$modal(thisS.modalId.replace(thisS.numberId.toString(), thisS.backdropId.replace('ssi-backdrop', '')))[0]) || thisS.backdropId.replace('ssi-backdrop', '') == thisS.numberId))  )) {//thisS maybe blow your mine
                 var closeBackdrop = function () {//thisS will execute when the hide animation end
                     $backdrop.addClass('ssi-hidden').removeClass('ssi-openedDialog');
+                    $backdrop.trigger('backdropClose.ssi-modal');
                     if (modalObj.options.keepContent !== true) $backdrop.remove();//remove backdrop if keepContent option is false
                 };
                 $backdrop.addAnimation(thisS.options.backdropAnimation.hide, closeBackdrop);
@@ -876,44 +878,46 @@
     };
 
     Ssi_modal.prototype.destroyModal = function () {
-        var $modalOuter = this.get$modal(),
+        var $modal = this.get$modal(),
          modalObj = this;
-        $modalOuter.trigger({type: "beforeClose.ssi-modal", modal: modalObj}); //trigger close event
-        $modalOuter.off('.ssi_modal');
-        if (this.options.keepContent !== true) {
-            $modalOuter.off('.ssi-modal').find('#ssi-modalWrapper').off('.ssi-modal');
-        }
+        $modal.off('.ssi_modal');
+        $modal.trigger("beforeClose.ssi-modal"); //trigger close event
         if (this.options.backdrop === 'shared') {
             sharedBackdrop--;
         } else if (this.options.backdrop === 'byKindShared') {
             byKindShare[this.pluginName]--;
         }
 
-        if ($modalOuter.hasClass('ssi-openedDialog')) {
-            $modalOuter.removeClass('ssi-openedDialog');
+        if ($modal.hasClass('ssi-openedDialog')) {
+            $modal.removeClass('ssi-openedDialog');
             if (this.options.bodyScroll === false) {
                 openedModals--;// downgrade opened modals
             }
         }
 
         var closeModal = function () {//this will execute as a callback when the hide animation end
-            $modalOuter.addClass('ssi-hidden');
+            $modal.addClass('ssi-hidden');
             if (modalObj.options.stack) {
-                $modalOuter.addClass('ssi-smoothSlide').slideUp('500', function () {
-                    $modalOuter.removeClass('ssi-smoothSlide');
-                    if (modalObj.options.keepContent !== true) $modalOuter.remove();//will remove modal from DOM if keepContent option is false
+                $modal.addClass('ssi-smoothSlide').slideUp('500', function () {
+                    $modal.removeClass('ssi-smoothSlide');
+                    $modal.trigger("onClose.ssi-modal"); //trigger close event
+                    if (modalObj.options.keepContent !== true) $modal.remove();//will remove modal from DOM if keepContent option is false
 
                 });
             } else {
-                if (modalObj.options.keepContent !== true)$modalOuter.remove();//will remove modal from DOM if keepContent option is false
+                $modal.trigger("onClose.ssi-modal"); //trigger close event
+                if (modalObj.options.keepContent !== true)$modal.remove();//will remove modal from DOM if keepContent option is false
             }
             if (typeof modalObj.options.onClose === 'function')
                 modalObj.options.onClose(modalObj);//execute onClose callback
-            $modalOuter.trigger({type: "onClose.ssi-modal", modal: modalObj}); //trigger close event
+
+            if (modalObj.options.keepContent !== true) {
+                $modal.off('.ssi-modal').find('#ssi-modalWrapper').off('.ssi-modal');
+            }
         };
 
         //close the modal window
-        $modalOuter.addAnimation(this.options.modalAnimation.hide, closeModal);
+        $modal.addAnimation(this.options.modalAnimation.hide, closeModal);
         this.options.icons = [];
         this.options.buttons = [];
         this.options.content = '';
@@ -1260,6 +1264,7 @@
         if ((direction === 'next' && currentIndex + 1 >= $elementsLength) || (direction === 'prev' && currentIndex < 0)) {
             return this;
         }
+
         this.destroyModal();
         if (direction === 'next') {//next image
             currentIndex++;
@@ -1337,14 +1342,7 @@
          $content = $modalWrapper.find('#ssi-modalContent');
         var i = 0;
         if (imgBox.options.navigation && $eventTarget) {
-            var $nav = setImgNavigation(imgBox);
-            $content.mouseover(function () {
-                $nav.addClass('ssi-navFadeIn');
-            }).mouseleave(function () {
-                $nav.removeClass('ssi-navFadeIn');
-            });
-            $content.append($nav);
-
+           setImgNavigation(imgBox).appendTo($content);
         }
         var imgTypes = [
             'jpg',
@@ -1396,23 +1394,35 @@
 
         function setImgNavigation() {
             var $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]'),
-             currentIndex = $groupElements.index($eventTarget),
+             index = $groupElements.index($eventTarget),
              $elementsLength = $groupElements.length,
-             $nav = $('<div class="ssi-modalNavigation"></div>'),
-             $next = $('<div class="ssi-modalNext ' + (currentIndex + 1 >= $elementsLength ? 'ssi-hidden' : '') + '"><span></span></div>')
-              .on('click.ssi_modal', function (e) {
-                  e.preventDefault();
-                  $(this).off('click.ssi_modal');
-                  imgBox.navigate('next');
-              }),
-             $prev = $('<div class="ssi-modalPrev ' + (currentIndex < 1 ? 'ssi-hidden' : '') + '"><span></span></div>')
-              .on('click.ssi_modal', function (e) {
-                  e.preventDefault();
-                  $(this).off('click.ssi_modal');
-                  imgBox.navigate('prev')
-              });
-
+             $nav = $('<div class="ssi-modalNavigation"></divid>').mouseover(function () {
+                $nav.addClass('ssi-navFadeIn');
+            }).mouseleave(function () {
+                $nav.removeClass('ssi-navFadeIn');
+            }),
+             $next = $('<div class="ssi-modalNext ' + (index + 1 >= $elementsLength ? 'ssi-hidden' : '') + '"><span></span></div>') ,
+             $prev = $('<div class="ssi-modalPrev ' + (index < 1 ? 'ssi-hidden' : '') + '"><span></span></div>');
             $nav.append($next, $prev);
+            imgBox.get$backdrop().on('backdropClose.ssi-modal',function(){
+                currentIndex='';
+            });
+imgBox.get$modal().on('beforeClose.ssi-modal',function(){
+    $nav.remove();
+}).on('onShow.ssi-modal',function(){
+    $next.on('click', function (e) {
+        e.preventDefault();
+        imgBox.navigate('next');
+        $(this).off('click.ssi_modal');
+    });
+    $prev.on('click', function (e) {
+        e.preventDefault();
+        imgBox.navigate('prev');
+        $(this).off('click.ssi_modal');
+    });
+});
+
+
             return $nav;
         }
 

@@ -1,4 +1,4 @@
-.icon, .ssi-modalOuter.ssi-fullScreen .ssi-modalWindow .ssi-displayIcon, .ssi-topIcons .ssi-displayIcon, .ssi-topIcons .ssi-closeIcon, .imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalPrev span, .imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalNext span, .notify.ssi-success .ssi-modalTitle span.success, .notify.ssi-info .ssi-modalTitle span.success, .notify.ssi-warning .ssi-modalTitle span.success, .notify.ssi-error .ssi-modalTitle span.success, .notify.ssi-info .ssi-modalTitle span.info, .notify.ssi-warning .ssi-modalTitle span.warning, .notify.ssi-error .ssi-modalTitle span.error {
+.icon, .ssi-modalOuter.ssi-fullScreen .ssi-modalWindow .ssi-displayIcon, .ssi-topIcons .ssi-displayIcon, .ssi-topIcons .ssi-closeIcon, .ssi-modalNavigation .ssi-modalPrev span, .ssi-modalNavigation .ssi-modalNext span, .notify.ssi-success .ssi-modalTitle span.success, .notify.ssi-info .ssi-modalTitle span.success, .notify.ssi-warning .ssi-modalTitle span.success, .notify.ssi-error .ssi-modalTitle span.success, .notify.ssi-info .ssi-modalTitle span.info, .notify.ssi-warning .ssi-modalTitle span.warning, .notify.ssi-error .ssi-modalTitle span.error {
   background-image: url("images/sprite.png");
 }
 
@@ -86,7 +86,7 @@ body.ssi-modalOpen {
 
 .ssi-modalWrapper {
   position: relative;
-  margin: 30px auto 0;
+  margin: 30px auto 20px;
   z-index: 1501;
 }
 
@@ -842,82 +842,6 @@ body.ssi-modalOpen {
   width: 100%;
 }
 
-.imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  opacity: 0;
-  -webkit-transition: opacity .5s;
-  transition: opacity .5s;
-}
-
-.imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalPrev, .imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalNext {
-  top: 0;
-  outline: 0;
-  height: 100%;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
-  cursor: pointer;
-}
-
-.imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalPrev span, .imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalNext span {
-  position: relative;
-  top: 40%;
-}
-
-.imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalPrev {
-  width: 20%;
-  left: 0;
-  float: left;
-}
-
-.imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalPrev span {
-  background-position: 0px -356px;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  display: block;
-  width: 56px;
-  height: 56px;
-}
-
-.imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalPrev:hover span {
-  background-position: 0px -300px;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  display: block;
-  width: 56px;
-  height: 56px;
-}
-
-.imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalNext {
-  width: 75%;
-  float: right;
-  right: 0;
-}
-
-.imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalNext span {
-  float: right;
-  background-position: 0px -468px;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  display: block;
-  width: 56px;
-  height: 56px;
-}
-
-.imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-modalNavigation .ssi-modalNext:hover span {
-  background-position: 0px -412px;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  display: block;
-  width: 56px;
-  height: 56px;
-}
-
 .imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-imgButtons {
   position: absolute;
   left: 0;
@@ -938,6 +862,97 @@ body.ssi-modalOpen {
 .imgBox .ssi-modalWrapper .ssi-modalWindow .ssi-modalContent .ssi-imgButtons .ssi-imgBtn {
   margin: 2px;
   padding: 3px;
+}
+
+.ssi-modalNavigation {
+  position: fixed;
+  top: 50%;
+  z-index: 1500;
+  margin-top: -150px;
+  left: 0;
+  height: 300px;
+  width: 100%;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+@media only screen and (max-width: 900px) {
+  .ssi-modalNavigation {
+    height: 200px;
+    margin-top: -100px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .ssi-modalNavigation {
+    height: 100px;
+    margin-top: -50px;
+  }
+  .ssi-modalNavigation .ssi-modalTitle {
+    font-size: 18px;
+  }
+}
+
+.ssi-modalNavigation .ssi-modalPrev, .ssi-modalNavigation .ssi-modalNext {
+  top: 0;
+  outline: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.ssi-modalNavigation .ssi-modalPrev span, .ssi-modalNavigation .ssi-modalNext span {
+  position: relative;
+  top: 40%;
+}
+
+.ssi-modalNavigation .ssi-modalPrev {
+  width: 40%;
+  left: 0;
+  float: left;
+}
+
+.ssi-modalNavigation .ssi-modalPrev span {
+  background-position: 0px -356px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.ssi-modalNavigation .ssi-modalPrev:hover span {
+  background-position: 0px -300px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.ssi-modalNavigation .ssi-modalNext {
+  width: 60%;
+  float: right;
+  right: 0;
+}
+
+.ssi-modalNavigation .ssi-modalNext span {
+  float: right;
+  background-position: 0px -468px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.ssi-modalNavigation .ssi-modalNext:hover span {
+  background-position: 0px -412px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: block;
+  width: 56px;
+  height: 56px;
 }
 
 .imgBox .ssi-modalWrapper.ssi-iframe {

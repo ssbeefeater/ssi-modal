@@ -104,7 +104,7 @@ body.ssi-modalOpen {
 
 .ssi-modalWrapper {
   position: relative;
-  margin: 30px auto 0;
+  margin: 30px auto 20px;
   z-index: $zIndex+1;
 
   &.full {
@@ -638,53 +638,7 @@ position: relative;
         .ssi-modalImg {
           width: 100%;
         }
-        .ssi-modalNavigation {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 100%;
-          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-          filter: alpha(opacity=0);
-          opacity: 0;
-          transition: opacity .5s;
-          .ssi-modalPrev, .ssi-modalNext {
-            top:0;
-            outline: 0;
-            height: 100%;
-            transition: opacity 0.3s;
-            cursor: pointer;
-            span {
-              position: relative;
-              top: 40%;
-              @extend .icon;
-            }
-          }
-          .ssi-modalPrev {
-            width: 20%;
-            left: 0;
-            float: left;
-            span {
-              @include sprite($left);
-            }
-            &:hover span {
-              @include sprite($left-h);
-            }
-          }
 
-          .ssi-modalNext {
-            width: 75%;
-            float: right;
-            right: 0;
-            span {
-              float: right;
-              @include sprite($right);
-            }
-            &:hover span {
-              @include sprite($right-h);
-            }
-          }
-        }
         .ssi-imgButtons {
           position: absolute;
           left: 0;
@@ -708,7 +662,61 @@ position: relative;
     }
   }
 }
+.ssi-modalNavigation {
+  position: fixed;
+  top: 50%;
+  z-index: 1500;
+  margin-top: -150px;
+  left: 0;
+  height: 300px;
+  @include largeMedia {
+    height: 200px;
+    margin-top: -100px;
+  }
+  @include smallMedia {
+    height: 100px;
+    margin-top: -50px;
+  }
+  width: 100%;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+  .ssi-modalPrev, .ssi-modalNext {
+    top:0;
+    outline: 0;
+    height: 100%;
+    cursor: pointer;
+    span {
+      position: relative;
+      top: 40%;
+      @extend .icon;
+    }
+  }
+  .ssi-modalPrev {
+    width: 40%;
+    left: 0;
+    float: left;
+    span {
+      @include sprite($left);
+    }
+    &:hover span {
+      @include sprite($left-h);
+    }
+  }
 
+  .ssi-modalNext {
+    width: 60%;
+    float: right;
+    right: 0;
+    span {
+      float: right;
+      @include sprite($right);
+    }
+    &:hover span {
+      @include sprite($right-h);
+    }
+  }
+}
 .imgBox .ssi-modalWrapper.ssi-iframe {
   width: 50%;
   height: 55%;
