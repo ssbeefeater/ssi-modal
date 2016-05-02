@@ -1395,27 +1395,29 @@
         function setImgNavigation() {
             var $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]'),
              index = $groupElements.index($eventTarget),
-             $elementsLength = $groupElements.length,
+             $elementLength = $groupElements.length,
              $nav = $('<div class="ssi-modalNavigation"></divid>').mouseover(function () {
                 $nav.addClass('ssi-navFadeIn');
             }).mouseleave(function () {
                 $nav.removeClass('ssi-navFadeIn');
             }),
-             $next = $('<div class="ssi-modalNext ' + (index + 1 >= $elementsLength ? 'ssi-hidden' : '') + '"><span></span></div>') ,
+             $next = $('<div class="ssi-modalNext ' + (index + 1 >= $elementLength ? 'ssi-hidden' : '') + '"><span></span></div>') ,
              $prev = $('<div class="ssi-modalPrev ' + (index < 1 ? 'ssi-hidden' : '') + '"><span></span></div>');
             $nav.append($next, $prev);
-            imgBox.get$backdrop().on('backdropClose.ssi-modal',function(){
+            imgBox.get$backdrop().one('backdropClose.ssi-modal',function(){
+
+                 $elementsLength='';
                 currentIndex='';
             });
-imgBox.get$modal().on('beforeClose.ssi-modal',function(){
+imgBox.get$modal().one('beforeClose.ssi-modal',function(){
     $nav.remove();
-}).on('onShow.ssi-modal',function(){
-    $next.on('click', function (e) {
+}).one('onShow.ssi-modal',function(){
+    $next.one('click', function (e) {
         e.preventDefault();
         imgBox.navigate('next');
         $(this).off('click.ssi_modal');
     });
-    $prev.on('click', function (e) {
+    $prev.one('click', function (e) {
         e.preventDefault();
         imgBox.navigate('prev');
         $(this).off('click.ssi_modal');
