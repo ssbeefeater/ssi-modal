@@ -1342,7 +1342,7 @@
          $content = $modalWrapper.find('#ssi-modalContent');
         var i = 0;
         if (imgBox.options.navigation && $eventTarget) {
-           setImgNavigation(imgBox).appendTo($content);
+            $content.append(setImgNavigation);
         }
         var imgTypes = [
             'jpg',
@@ -1393,10 +1393,12 @@
         }
 
         function setImgNavigation() {
-            var $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]'),
-             index = $groupElements.index($eventTarget),
-             $elementLength = $groupElements.length,
-             $nav = $('<div class="ssi-modalNavigation"></divid>').mouseover(function () {
+            var $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]');
+            if(!$groupElements.length)return;
+            var index = $groupElements.index($eventTarget),
+             $elementLength = $groupElements.length;
+            if(index + 1 >= $elementLength && index < 1 )return;
+            var $nav = $('<div class="ssi-modalNavigation"></divid>').mouseover(function () {
                 $nav.addClass('ssi-navFadeIn');
             }).mouseleave(function () {
                 $nav.removeClass('ssi-navFadeIn');
