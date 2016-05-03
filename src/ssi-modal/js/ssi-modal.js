@@ -961,7 +961,7 @@
         }
 
         if (typeof offset !== 'number') {
-            offset = 110;
+            offset = 100;
         }
 
         var $content = this.get$content();
