@@ -1517,7 +1517,7 @@ imgBox.get$modal().one('beforeClose.ssi-modal',function(){
     ssi_modal.notify = function (type, options, callback) {
         var defaults = {
             closeIcon: false,
-            onePerPosition:false,
+            overrideOther:false,
             sizeClass: 'dialog',
             onClickClose: true,
             bodyScroll: true,
@@ -1626,7 +1626,7 @@ imgBox.get$modal().one('beforeClose.ssi-modal',function(){
             options.backdrop = 'byKndShared'
         }
         options.keepContent = false;
-        if(options.onePerPosition){
+        if(options.overrideOther){
             var classes=options.position.split(' ');
 $('body').find('div.'+classes[0]+'.'+classes[1]).children().empty()
         }
