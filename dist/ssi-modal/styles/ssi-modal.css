@@ -277,7 +277,8 @@ body.ssi-modalOpen {
   width: 16px;
   height: 16px;
   cursor: pointer;
-  background: no-repeat center;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: inherit;
 }
 
