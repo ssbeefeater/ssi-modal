@@ -255,7 +255,7 @@
      * @returns {JQuery}
      */
     Ssi_modal.prototype.get$wrapper = function () {
-        if(this.options.stack){
+        if (this.options.stack) {
             return this.get$modal().parent();
         }
         return this.get$modal().find('#ssi-modalWrapper');
@@ -775,9 +775,9 @@
         var $modal = this.get$modal(),
          modalObj = this;
 
-        setTimeout(function(){
+        setTimeout(function () {
             $modal.trigger("beforeShow.ssi-modal");//trigger show event
-        },0);
+        }, 0);
         if (this.options.bodyScroll === false) {
             $('body').addClass('ssi-modalOpen');//add this class to body to disable scrollbar
             openedModals++;//calculate open modals
@@ -794,9 +794,9 @@
             if (typeof modalObj.options.onShow === 'function') {
                 modalObj.options.onShow(modalObj);//execute onShow callback
             }
-            setTimeout(function(){
+            setTimeout(function () {
                 $modal.trigger("onShow.ssi-modal");//trigger show event);
-            },0);
+            }, 0);
         };
         $modal.addAnimation(this.options.modalAnimation.show, function () {
             callback();
@@ -980,7 +980,7 @@
 
             if (this.options.fitScreen && this.options.fixedHeight) {
                 if (typeof this.options.fitScreen === 'number') {
-                    optionsOffset = Math.abs((this.options.fitScreen+this.options.fixedHeight)/2 - offset);
+                    optionsOffset = Math.abs((this.options.fitScreen + this.options.fixedHeight) / 2 - offset);
                 }
                 $content.css('height', windowHeight - totalHeight - optionsOffset); //add more margin down
             } else {
@@ -1308,6 +1308,7 @@
     };
     $('body').on('click.ssi-imgBox', 'a.ssi-imgBox', function (e) {//click event handler for all links with ssi-imgbox class
         e.preventDefault();
+        e.stopPropagation();
         $eventTarget = $(e.currentTarget);
         var group = $eventTarget.attr('data-ssi_imgGroup') || 'ssi-mainOption';//get the options of the right group
         var options = imgBoxOptions[group] || imgBoxOptions['ssi-mainOption'];
@@ -1331,7 +1332,6 @@
             }
         }
         ssi_modal.imgBox.show(url, options, $eventTarget);
-        return false
     });
 
     function setImg(imgBox, url) {
@@ -1364,7 +1364,6 @@
                      var height = ghost.height;
                      onHasSize(width, height);
                  }
-
              })
              .error(function () {
                  var alt = ($eventTarget ? $eventTarget.attr('data-alt') : '');
@@ -1397,38 +1396,37 @@
 
         function setImgNavigation() {
             var $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]');
-            if(!$groupElements.length)return;
+            if (!$groupElements.length)return;
             var index = $groupElements.index($eventTarget),
              $elementLength = $groupElements.length;
-            if(index + 1 >= $elementLength && index < 1 )return;
+            if (index + 1 >= $elementLength && index < 1)return;
             var $nav = $('<div class="ssi-modalNavigation"></divid>').mouseover(function () {
-                $nav.addClass('ssi-navFadeIn');
-            }).mouseleave(function () {
-                $nav.removeClass('ssi-navFadeIn');
-            }),
-             $next = $('<div class="ssi-modalNext ' + (index + 1 >= $elementLength ? 'ssi-hidden' : '') + '"><span></span></div>') ,
+                 $nav.addClass('ssi-navFadeIn');
+             }).mouseleave(function () {
+                 $nav.removeClass('ssi-navFadeIn');
+             }),
+             $next = $('<div class="ssi-modalNext ' + (index + 1 >= $elementLength ? 'ssi-hidden' : '') + '"><span></span></div>'),
              $prev = $('<div class="ssi-modalPrev ' + (index < 1 ? 'ssi-hidden' : '') + '"><span></span></div>');
             $nav.append($next, $prev);
-            imgBox.get$backdrop().one('backdropClose.ssi-modal',function(){
+            imgBox.get$backdrop().one('backdropClose.ssi-modal', function () {
 
-                 $elementsLength='';
-                currentIndex='';
+                $elementsLength = '';
+                currentIndex = '';
             });
-imgBox.get$modal().one('beforeClose.ssi-modal',function(){
-    $nav.remove();
-}).one('onShow.ssi-modal',function(){
-    $next.one('click', function (e) {
-        e.preventDefault();
-        imgBox.navigate('next');
-        $(this).off('click.ssi_modal');
-    });
-    $prev.one('click', function (e) {
-        e.preventDefault();
-        imgBox.navigate('prev');
-        $(this).off('click.ssi_modal');
-    });
-});
-
+            imgBox.get$modal().one('beforeClose.ssi-modal', function () {
+                $nav.remove();
+            }).one('onShow.ssi-modal', function () {
+                $next.one('click', function (e) {
+                    e.preventDefault();
+                    imgBox.navigate('next');
+                    $(this).off('click.ssi_modal');
+                });
+                $prev.one('click', function (e) {
+                    e.preventDefault();
+                    imgBox.navigate('prev');
+                    $(this).off('click.ssi_modal');
+                });
+            });
 
             return $nav;
         }
@@ -1517,7 +1515,7 @@ imgBox.get$modal().one('beforeClose.ssi-modal',function(){
     ssi_modal.notify = function (type, options, callback) {
         var defaults = {
             closeIcon: false,
-            overrideOther:false,
+            overrideOther: false,
             sizeClass: 'dialog',
             onClickClose: true,
             bodyScroll: true,
@@ -1626,9 +1624,9 @@ imgBox.get$modal().one('beforeClose.ssi-modal',function(){
             options.backdrop = 'byKndShared'
         }
         options.keepContent = false;
-        if(options.overrideOther){
-            var classes=options.position.split(' ');
-$('body').find('div.'+classes[0]+'.'+classes[1]).children().empty()
+        if (options.overrideOther) {
+            var classes = options.position.split(' ');
+            $('body').find('div.' + classes[0] + '.' + classes[1]).children().empty()
         }
 
         return ssi_modal.createObject(options)
