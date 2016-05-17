@@ -345,11 +345,11 @@
         var theContent = content;
         if (content instanceof $ && this.options.bodyElement === true) {
             if (this.options.extendOriginalContent === true) {
-                var beforeClose=this.options.beforeClose;
+                var beforeClose = this.options.beforeClose;
                 this.options.beforeClose = function (modal) {
                     var resume;
                     if (typeof  beforeClose === 'function')
-                        resume =  beforeClose(modal);
+                        resume = beforeClose(modal);
                     if (resume !== false) {
                         content.eq(0).after(modal.get$content().contents().unwrap().css('display', '')).remove();
                     } else {
@@ -642,7 +642,7 @@
             method: function () {
             },
             type: 'button',
-            focused:true,
+            focused: false,
             id: '',
             label: '',
             modalAnimation: '',
@@ -673,6 +673,11 @@
                     $btn.trigger('click');
                 }
             });
+        }
+        if (buttonOptions.focused) {
+            setTimeout(function () {
+                $btn.focus();
+            }, 100)
         }
         return $btn.click(function (e) {
             e.preventDefault();
