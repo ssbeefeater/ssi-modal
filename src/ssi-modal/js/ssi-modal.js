@@ -345,10 +345,11 @@
         var theContent = content;
         if (content instanceof $ && this.options.bodyElement === true) {
             if (this.options.extendOriginalContent === true) {
+                var beforeClose=this.options.beforeClose;
                 this.options.beforeClose = function (modal) {
                     var resume;
-                    if (typeof beforeClose === 'function')
-                        resume = beforeClose(modal);
+                    if (typeof  beforeClose === 'function')
+                        resume =  beforeClose(modal);
                     if (resume !== false) {
                         content.eq(0).after(modal.get$content().contents().unwrap().css('display', '')).remove();
                     } else {
@@ -641,6 +642,7 @@
             method: function () {
             },
             type: 'button',
+            focused:true,
             id: '',
             label: '',
             modalAnimation: '',
@@ -1314,13 +1316,13 @@
         var options = imgBoxOptions[group] || imgBoxOptions['ssi-mainOption'];
         var url = $eventTarget.attr('href');
         if (options.imgButtons !== '' && !$.isEmptyObject(options.imgButtons)) {
-            for (var i = 0; i < options.imgButtons.length; i++) {//check if the current button is in the exclude list
+            for (var i = 0; i < options.imgButtons.length; i++) { //check if the current button is in the exclude list
                 if (options.imgButtons[i].exclude) {
                     var btnClass = options.imgButtons[i].exclude.split(',');
                     for (var y = 0; y < btnClass.length; y++) {
                         if ($eventTarget.hasClass(btnClass[y])) {
                             options.imgButtons.splice(i, 1);
-                            break
+                            break;
                         }
                     }
                 }
@@ -1335,15 +1337,22 @@
     });
 
     function setImg(imgBox, url) {
+
+        var $modalWrapper = imgBox.get$wrapper(),
+         $content = $modalWrapper.find('#ssi-modalContent');
+        if (!url || url == '#') {
+            var alt = ($eventTarget ? $eventTarget.attr('data-alt') : '');
+            $img = '<h3>Image not found</h3><br>' + (typeof alt !== 'undefined' ? '<h4>' + alt + '</h4>' : '');
+            placeImg(true);
+            return;
+        }
         var interval,
          startInterval,
          supportsNatural = ("naturalWidth" in (new Image())),
          windowHeight = $(window).height(),
          windowWidth = $(window).width(),
          $img = [''],
-         $modalWrapper = imgBox.get$wrapper(),
-         $content = $modalWrapper.find('#ssi-modalContent');
-        var i = 0;
+         i = 0;
         if (imgBox.options.navigation && $eventTarget) {
             $content.append(setImgNavigation);
         }

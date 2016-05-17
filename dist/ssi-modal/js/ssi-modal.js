@@ -345,10 +345,11 @@
         var theContent = content;
         if (content instanceof $ && this.options.bodyElement === true) {
             if (this.options.extendOriginalContent === true) {
+                var beforeClose=this.options.beforeClose;
                 this.options.beforeClose = function (modal) {
                     var resume;
-                    if (typeof beforeClose === 'function')
-                        resume = beforeClose(modal);
+                    if (typeof  beforeClose === 'function')
+                        resume =  beforeClose(modal);
                     if (resume !== false) {
                         content.eq(0).after(modal.get$content().contents().unwrap().css('display', '')).remove();
                     } else {
@@ -641,6 +642,7 @@
             method: function () {
             },
             type: 'button',
+            focused:true,
             id: '',
             label: '',
             modalAnimation: '',
@@ -1308,18 +1310,19 @@
     };
     $('body').on('click.ssi-imgBox', 'a.ssi-imgBox', function (e) {//click event handler for all links with ssi-imgbox class
         e.preventDefault();
+        e.stopPropagation();
         $eventTarget = $(e.currentTarget);
         var group = $eventTarget.attr('data-ssi_imgGroup') || 'ssi-mainOption';//get the options of the right group
         var options = imgBoxOptions[group] || imgBoxOptions['ssi-mainOption'];
         var url = $eventTarget.attr('href');
         if (options.imgButtons !== '' && !$.isEmptyObject(options.imgButtons)) {
-            for (var i = 0; i < options.imgButtons.length; i++) {//check if the current button is in the exclude list
+            for (var i = 0; i < options.imgButtons.length; i++) { //check if the current button is in the exclude list
                 if (options.imgButtons[i].exclude) {
                     var btnClass = options.imgButtons[i].exclude.split(',');
                     for (var y = 0; y < btnClass.length; y++) {
                         if ($eventTarget.hasClass(btnClass[y])) {
                             options.imgButtons.splice(i, 1);
-                            break
+                            break;
                         }
                     }
                 }
@@ -1331,19 +1334,25 @@
             }
         }
         ssi_modal.imgBox.show(url, options, $eventTarget);
-        return false
     });
 
     function setImg(imgBox, url) {
+
+        var $modalWrapper = imgBox.get$wrapper(),
+         $content = $modalWrapper.find('#ssi-modalContent');
+        if (!url || url == '#') {
+            var alt = ($eventTarget ? $eventTarget.attr('data-alt') : '');
+            $img = '<h3>Image not found</h3><br>' + (typeof alt !== 'undefined' ? '<h4>' + alt + '</h4>' : '');
+            placeImg(true);
+            return;
+        }
         var interval,
          startInterval,
          supportsNatural = ("naturalWidth" in (new Image())),
          windowHeight = $(window).height(),
          windowWidth = $(window).width(),
          $img = [''],
-         $modalWrapper = imgBox.get$wrapper(),
-         $content = $modalWrapper.find('#ssi-modalContent');
-        var i = 0;
+         i = 0;
         if (imgBox.options.navigation && $eventTarget) {
             $content.append(setImgNavigation);
         }
@@ -1364,7 +1373,6 @@
                      var height = ghost.height;
                      onHasSize(width, height);
                  }
-
              })
              .error(function () {
                  var alt = ($eventTarget ? $eventTarget.attr('data-alt') : '');
@@ -1379,6 +1387,7 @@
                     i++
                 }, 50);
             }
+
         } else {
             if (typeof imgBox.options.iframe.allowFullScreen !== 'boolean') {
                 imgBox.options.iframe.allowFullScreen = true;
@@ -1393,6 +1402,7 @@
             }
             placeImg();
         }
+
         function setImgNavigation() {
             var $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]');
             if (!$groupElements.length)return;
@@ -1426,6 +1436,7 @@
                     $(this).off('click.ssi_modal');
                 });
             });
+
             return $nav;
         }
 
@@ -1479,6 +1490,12 @@
             $modalWrapper.addClass('ssi-imgBorder')
 
         }
+
+        /**
+         * Initialize the arrows of navigation.
+         * @param {Ssi_modal}modalObj
+         * @returns {*|HTMLElement}
+         */
 
         /**
          * checks when the image's size is available
