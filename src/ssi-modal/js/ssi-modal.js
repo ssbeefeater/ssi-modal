@@ -1251,6 +1251,11 @@
     //--------------------------------End of confirm plugin--------------------------------------------------
 
 //-----------------------------Start of imgBox plugin------------------------------------------------------------------
+    function isDataURL(s) {
+        return !!s.match(isDataURL.regex);
+    }
+
+    isDataURL.regex = /^\s*data:([a-z]+\/[a-z0-9\-\+]+(;[a-z\-]+\=[a-z0-9\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i;
 
     var imgBoxOptions = {'ssi-mainOption': {}};//this will hold the imgbox options when will call ssi_modal.imgBox function
     ssi_modal.imgBox = function (options, group) {//set options for the image box
@@ -1292,6 +1297,7 @@
             navigation: true,
             closeIcon: true,
             title: false,
+            allowIframe:true,
             hideImgButtons: true
         };
         options = $.extend(true, defaults, options);
@@ -1368,7 +1374,7 @@
             'gif',
             'bmp'
         ];
-        if ($.inArray(url.split('.').pop().toLowerCase(), imgTypes) !== -1) {
+        if (!imgBox.options.allowIframe||$.inArray(url.split('.').pop().toLowerCase(), imgTypes) !== -1||isDataURL(url)) {
             $img = $('<img src="' + url + '" class="ssi-modalImg"/>')
              .on('load', function () {
                  if (!supportsNatural) {
