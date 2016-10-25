@@ -1641,7 +1641,7 @@
             options.title = generateIcon(icon) + ' ' + title;
         }
         if (options.backdrop === true) {
-            options.backdrop = 'byKndShared'
+            options.backdrop = 'byKindShared'
         }
         options.keepContent = false;
         if (options.overrideOther) {
@@ -1766,7 +1766,6 @@
         }
         return value;
     }
-
     return ssi_modal;
 
 }));
