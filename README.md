@@ -1,5 +1,6 @@
 # ssi-modal
 
+[![CDNJS](https://img.shields.io/cdnjs/v/ssi-modal.svg)](https://cdnjs.com/libraries/ssi-modal)
 
 The most flexible and powerful modal window.<br />
 &nbsp;&nbsp;Download once, do it all.
