@@ -196,7 +196,7 @@
      */
     Ssi_modal.prototype.get$modal = function (id) {
         id = id || this.modalId;
-        return this.$modal || ( id && $('#' + id));
+        return this.$modal || (id && $('#' + id));
     };
     /**
      * Returns the title element of the modal.
@@ -271,7 +271,7 @@
      * @returns {JQuery}
      */
     Ssi_modal.prototype.get$backdrop = function () {
-        return this.$backdrop || ( this.backdropId && $('#' + this.backdropId));
+        return this.$backdrop || (this.$backdrop && $('#' + this.backdropId));
     };
 
     var time = null;
@@ -348,7 +348,7 @@
                 var beforeClose = this.options.beforeClose;
                 this.options.beforeClose = function (modal) {
                     var resume;
-                    if (typeof  beforeClose === 'function')
+                    if (typeof beforeClose === 'function')
                         resume = beforeClose(modal);
                     if (resume !== false) {
                         content.eq(0).after(modal.get$content().contents().unwrap().css('display', '')).remove();
@@ -408,7 +408,7 @@
         }
         $leftArea.append(leftAreaArray);
         $rightArea.append(rightAreaArray);
-        if (fixHeight)this.setModalHeight();
+        if (fixHeight) this.setModalHeight();
         return $buttonsArea;
     };
     /**
@@ -439,7 +439,7 @@
         var modalAnim = (modalObj.options.modalAnimation || modalObj.options.animation || false);
         var backdropAnim = (modalObj.options.backdropAnimation || modalObj.options.animation || false);
         var inAnim,
-         outAnim;
+            outAnim;
 
         inAnim = changeAnimations((typeof modalAnim.show !== 'undefined' ? modalAnim.show : modalAnim), 'show');
         outAnim = changeAnimations((typeof modalAnim.hide !== 'undefined' ? modalAnim.hide : modalAnim), 'hide');
@@ -583,12 +583,12 @@
             icon = icons[i];
             (function (icon) {
                 iconArray.push($('<a class="' + icon.className + '"></a>')
-                 .click(function (e) {
-                     e.preventDefault();
-                     if (typeof icon.method === 'function') {
-                         $.proxy(icon.method, this)(e, modalObj);
-                     }
-                 }))
+                    .click(function (e) {
+                        e.preventDefault();
+                        if (typeof icon.method === 'function') {
+                            $.proxy(icon.method, this)(e, modalObj);
+                        }
+                    }))
             })(icon)
         }
 
@@ -601,8 +601,8 @@
      */
     var setWindow = function (modalObj) {
         var $modalWindow = $('<div id="ssi-modalWindow" class="ssi-modalWindow ' + (modalObj.options.center ? modalObj.options.sizeClass : '') + (modalObj.options.stack ? ' ' + modalObj.options.sizeClass + ' ' + modalObj.options.className + ' ' : '') + '"></div>'),
-         $modalContent = '',
-         windowContent = [];
+            $modalContent = '',
+            windowContent = [];
         if (modalObj.options.content) {
             $modalContent = modalObj.setContent(modalObj.options.content, 'html')
         }
@@ -655,8 +655,8 @@
             href = ' href="#"';
         }
         var $btn = $('<' + tag + href + (buttonOptions.id ? ' id="' + buttonOptions.id + '"' : ' ') + (buttonOptions.enableAfter ? 'disabled ' : '') + ' class="ssi-modalBtn ' + (buttonOptions.className || '') + '">'
-         + buttonOptions.label +
-         '</' + tag + '>');
+            + buttonOptions.label +
+            '</' + tag + '>');
         if (typeof buttonOptions.enableAfter === 'number') {
             var $count = $('<span class="ssi-countDown">' + buttonOptions.enableAfter + '</span>');
             updateTime(modalObj, $count, function () {
@@ -666,7 +666,7 @@
             });
             $btn.append($count);
         }
-//append button to selected object and set click event
+        //append button to selected object and set click event
         if (buttonOptions.keyPress) {
             $('body').on('keydown.ssi_modal', function (e) {
                 if (e.keyCode == buttonOptions.keyPress && !$btn.is(':disabled')) {
@@ -695,7 +695,7 @@
             }
             if (buttonOptions.closeAfter) {
                 modalObj.close();
-//finally close the modal if closeAfter option is true
+                //finally close the modal if closeAfter option is true
             }
         });
     };
@@ -704,7 +704,7 @@
      */
     Ssi_modal.prototype.modalInit = function () {
         var $modalWindow = setWindow(this),
-         modalObj = this;
+            modalObj = this;
         if (this.options.position) {
             if (this.options.stack) {
                 var appendAction = 'append';
@@ -715,8 +715,8 @@
                 var positionedElement = $('div.ssi-modalOuter.ssi-stack' + '.' + position);
                 if (positionedElement[0]) {//check if this element with this position exists to the dom.
                     positionedElement
-                     .find('#ssi-modalWrapper')//if exists append the window to the dom.
-                     [appendAction]($modalWindow);
+                        .find('#ssi-modalWrapper')//if exists append the window to the dom.
+                    [appendAction]($modalWindow);
                 }
                 this.$modal = $modalWindow;
             }
@@ -724,9 +724,9 @@
         if (!this.options.stack || !positionedElement[0]) {//if not stack modal or the element with this position dont exist to the dom create and append one.
             var wrapper = setWrapper(this);
             var $modal = setOuter(this)
-             .append(wrapper
-              .append($modalWindow))
-             .appendTo($('body'));
+                .append(wrapper
+                    .append($modalWindow))
+                .appendTo($('body'));
             if (!this.options.stack) {//if not stack give a unique id to the outer
                 this.$modal = $modal;
                 $modal.one('onShow.ssi-modal', function () {
@@ -753,7 +753,7 @@
         (this.$modal).attr('id', 'ssi-' + this.pluginName + this.numberId);
         (this.$modal).addClass(this.pluginName + ' ssi-modal');
         this.$modal.data('ssi-modal', this).addClass('ssi-hidden');
-        if (typeof orphanBackdrop === 'string')this.backdropInit();
+        if (typeof orphanBackdrop === 'string') this.backdropInit();
         return this.$modal;
     };
     /**
@@ -774,13 +774,13 @@
             $title = this.get$title();
         }
         $title.html(title);
-        if (fixHeight)this.setModalHeight();
+        if (fixHeight) this.setModalHeight();
         return $title;
     };
 
     Ssi_modal.prototype.showModal = function () {
         var $modal = this.get$modal(),
-         modalObj = this;
+            modalObj = this;
 
         setTimeout(function () {
             $modal.trigger("beforeShow.ssi-modal");//trigger show event
@@ -862,12 +862,12 @@
      */
     Ssi_modal.prototype.destroyBackdrop = function () {
         var $backdrop = this.get$backdrop(), modalObj = this;
-        if (this.options.keepContent !== true) {
+        if ($backdrop && this.options.keepContent !== true) {
             $backdrop.off('click.ssi-modal' + this.numberId);
         }
         var thisS = this
         var closeBack = function () {
-            if ((thisS.options.backdrop === true || (    (   ( thisS.options.backdrop === 'shared' && sharedBackdrop < 1) || ( thisS.options.backdrop === 'byKindShared' && byKindShare[thisS.pluginName] < 1)  ) && ( (!thisS.get$modal(thisS.modalId.replace(thisS.numberId.toString(), thisS.backdropId.replace('ssi-backdrop', '')))[0]) || thisS.backdropId.replace('ssi-backdrop', '') == thisS.numberId))  )) {//thisS maybe blow your mine
+            if ($backdrop && (thisS.options.backdrop === true || (((thisS.options.backdrop === 'shared' && sharedBackdrop < 1) || (thisS.options.backdrop === 'byKindShared' && byKindShare[thisS.pluginName] < 1)) && ((!thisS.get$modal(thisS.modalId.replace(thisS.numberId.toString(), thisS.backdropId.replace('ssi-backdrop', '')))[0]) || thisS.backdropId.replace('ssi-backdrop', '') == thisS.numberId)))) {//thisS maybe blow your mine
                 var closeBackdrop = function () {//thisS will execute when the hide animation end
                     $backdrop.addClass('ssi-hidden').removeClass('ssi-openedDialog');
                     $backdrop.trigger('backdropClose.ssi-modal');
@@ -889,7 +889,7 @@
 
     Ssi_modal.prototype.destroyModal = function () {
         var $modal = this.get$modal(),
-         modalObj = this;
+            modalObj = this;
         $modal.off('.ssi_modal');
         $modal.trigger("beforeClose.ssi-modal"); //trigger close event
         if (this.options.backdrop === 'shared') {
@@ -916,7 +916,7 @@
                 });
             } else {
                 $modal.trigger("onClose.ssi-modal"); //trigger close event
-                if (modalObj.options.keepContent !== true)$modal.remove();//will remove modal from DOM if keepContent option is false
+                if (modalObj.options.keepContent !== true) $modal.remove();//will remove modal from DOM if keepContent option is false
             }
             if (typeof modalObj.options.onClose === 'function')
                 modalObj.options.onClose(modalObj);//execute onClose callback
@@ -956,7 +956,7 @@
         return this;
     };
 
-//calculates modals height
+    //calculates modals height
     /**
      * Sets the height of the modal
      * @method setModalHeight
@@ -976,13 +976,13 @@
 
         var $content = this.get$content();
         var windowHeight = $(window).height(),
-         btnsHeight = 0, titleHeight = 0;
+            btnsHeight = 0, titleHeight = 0;
         if (this.options.buttons)
             btnsHeight = $content.next().innerHeight();
         if (this.options.title)
             titleHeight = this.get$title().innerHeight();
         var totalHeight = btnsHeight + titleHeight + offset,
-         optionsOffset = 0;
+            optionsOffset = 0;
         if (!option) {
 
             if (this.options.fitScreen && this.options.fixedHeight) {
@@ -1041,7 +1041,7 @@
         modalObj.countDown = setInterval(doUpdate, 1000);
     };
 
-//--------------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------------------
 
     /**
      * Creates a new modal window.
@@ -1128,7 +1128,7 @@
                 $target = modal.eq(modal.length - 1);
             }
             return $target.data('ssi-modal')
-             .close();
+                .close();
         },
         /**
          * Closes all or a group of modals.
@@ -1181,7 +1181,7 @@
         }
     };
 
-//-----------------------------Start of confirm plugin------------------------------------------------------------------
+    //-----------------------------Start of confirm plugin------------------------------------------------------------------
 
     ssi_modal.dialog = function (options, method) {
         var defaults = {
@@ -1207,7 +1207,7 @@
 
     //-----------------------------End of dialog plugin------------------------------------------------------------------
 
-//-----------------------------Start of confirm plugin------------------------------------------------------------------
+    //-----------------------------Start of confirm plugin------------------------------------------------------------------
 
     ssi_modal.confirm = function (options, method) {
         var defaults = {
@@ -1250,22 +1250,22 @@
 
     //--------------------------------End of confirm plugin--------------------------------------------------
 
-//-----------------------------Start of imgBox plugin------------------------------------------------------------------
+    //-----------------------------Start of imgBox plugin------------------------------------------------------------------
     function isDataURL(s) {
         return !!s.match(isDataURL.regex);
     }
 
     isDataURL.regex = /^\s*data:([a-z]+\/[a-z0-9\-\+]+(;[a-z\-]+\=[a-z0-9\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i;
 
-    var imgBoxOptions = {'ssi-mainOption': {}};//this will hold the imgbox options when will call ssi_modal.imgBox function
+    var imgBoxOptions = { 'ssi-mainOption': {} };//this will hold the imgbox options when will call ssi_modal.imgBox function
     ssi_modal.imgBox = function (options, group) {//set options for the image box
         group = group || 'ssi-mainOption';
         imgBoxOptions[group] = $.extend({}, imgBoxOptions['ssi-mainOption'], options);
     };
 
     var currentIndex,
-     $elementsLength,
-     $eventTarget;
+        $elementsLength,
+        $eventTarget;
 
     /**
      *  Navigates to the next/previous image.
@@ -1274,8 +1274,8 @@
      */
     ssi_modal.proto.navigate = function (direction) {
         var $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]');
-        if (!currentIndex)currentIndex = $groupElements.index($eventTarget);
-        if (!$elementsLength)$elementsLength = $groupElements.length;
+        if (!currentIndex) currentIndex = $groupElements.index($eventTarget);
+        if (!$elementsLength) $elementsLength = $groupElements.length;
         if ((direction === 'next' && currentIndex + 1 >= $elementsLength) || (direction === 'prev' && currentIndex < 0)) {
             return this;
         }
@@ -1297,7 +1297,7 @@
             navigation: true,
             closeIcon: true,
             title: false,
-            allowIframe:true,
+            allowIframe: true,
             hideImgButtons: true
         };
         options = $.extend(true, defaults, options);
@@ -1307,7 +1307,7 @@
             sizeClass: ''
         });
         var imgBox = ssi_modal.createObject(options)
-         .setPluginName('imgBox');
+            .setPluginName('imgBox');
         imgBox.imgUrl = url;
         imgBox.imgTitle = options.title;
         imgBox.init();
@@ -1350,7 +1350,7 @@
     function setImg(imgBox, url) {
 
         var $modalWrapper = imgBox.get$wrapper(),
-         $content = $modalWrapper.find('#ssi-modalContent');
+            $content = $modalWrapper.find('#ssi-modalContent');
         if (!url || url == '#') {
             var alt = ($eventTarget ? $eventTarget.attr('data-alt') : '');
             $img = '<h3>Image not found</h3><br>' + (typeof alt !== 'undefined' ? '<h4>' + alt + '</h4>' : '');
@@ -1358,12 +1358,12 @@
             return;
         }
         var interval,
-         startInterval,
-         supportsNatural = ("naturalWidth" in (new Image())),
-         windowHeight = $(window).height(),
-         windowWidth = $(window).width(),
-         $img = [''],
-         i = 0;
+            startInterval,
+            supportsNatural = ("naturalWidth" in (new Image())),
+            windowHeight = $(window).height(),
+            windowWidth = $(window).width(),
+            $img = [''],
+            i = 0;
         if (imgBox.options.navigation && $eventTarget) {
             $content.append(setImgNavigation);
         }
@@ -1374,22 +1374,22 @@
             'gif',
             'bmp'
         ];
-        if (!imgBox.options.allowIframe||$.inArray(url.split('.').pop().toLowerCase(), imgTypes) !== -1||isDataURL(url)) {
+        if (!imgBox.options.allowIframe || $.inArray(url.split('.').pop().toLowerCase(), imgTypes) !== -1 || isDataURL(url)) {
             $img = $('<img src="' + url + '" class="ssi-modalImg"/>')
-             .on('load', function () {
-                 if (!supportsNatural) {
-                     var ghost = new Image();
-                     ghost.src = $img.attr('src');
-                     var width = ghost.width;
-                     var height = ghost.height;
-                     onHasSize(width, height);
-                 }
-             })
-             .error(function () {
-                 var alt = ($eventTarget ? $eventTarget.attr('data-alt') : '');
-                 $img = '<h3>Image not found</h3><br>' + (typeof alt !== 'undefined' ? '<h4>' + alt + '</h4>' : '');
-                 placeImg(true);
-             });
+                .on('load', function () {
+                    if (!supportsNatural) {
+                        var ghost = new Image();
+                        ghost.src = $img.attr('src');
+                        var width = ghost.width;
+                        var height = ghost.height;
+                        onHasSize(width, height);
+                    }
+                })
+                .error(function () {
+                    var alt = ($eventTarget ? $eventTarget.attr('data-alt') : '');
+                    $img = '<h3>Image not found</h3><br>' + (typeof alt !== 'undefined' ? '<h4>' + alt + '</h4>' : '');
+                    placeImg(true);
+                });
             checkSize();
             if (startInterval) {
                 interval = setInterval(function () {
@@ -1416,17 +1416,17 @@
 
         function setImgNavigation() {
             var $groupElements = $('a[data-ssi_imgGroup="' + $eventTarget.attr('data-ssi_imgGroup') + '"]');
-            if (!$groupElements.length)return;
+            if (!$groupElements.length) return;
             var index = $groupElements.index($eventTarget),
-             $elementLength = $groupElements.length;
-            if (index + 1 >= $elementLength && index < 1)return;
+                $elementLength = $groupElements.length;
+            if (index + 1 >= $elementLength && index < 1) return;
             var $nav = $('<div class="ssi-modalNavigation"></divid>').mouseover(function () {
-                 $nav.addClass('ssi-navFadeIn');
-             }).mouseleave(function () {
-                 $nav.removeClass('ssi-navFadeIn');
-             }),
-             $next = $('<div class="ssi-modalNext ' + (index + 1 >= $elementLength ? 'ssi-hidden' : '') + '"><span></span></div>'),
-             $prev = $('<div class="ssi-modalPrev ' + (index < 1 ? 'ssi-hidden' : '') + '"><span></span></div>');
+                $nav.addClass('ssi-navFadeIn');
+            }).mouseleave(function () {
+                $nav.removeClass('ssi-navFadeIn');
+            }),
+                $next = $('<div class="ssi-modalNext ' + (index + 1 >= $elementLength ? 'ssi-hidden' : '') + '"><span></span></div>'),
+                $prev = $('<div class="ssi-modalPrev ' + (index < 1 ? 'ssi-hidden' : '') + '"><span></span></div>');
             $nav.append($next, $prev);
             imgBox.get$backdrop().one('backdropClose.ssi-modal', function () {
 
@@ -1474,7 +1474,7 @@
 
         function AspectRatio(srcWidth, srcHeight, maxWidth, maxHeight) {//find the aspect ration
             var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
-            return {width: srcWidth * ratio, height: srcHeight * ratio};
+            return { width: srcWidth * ratio, height: srcHeight * ratio };
         }
 
         function onHasSize(width, height) {
@@ -1493,7 +1493,7 @@
             }
             $content.css('height', naturalHeight);
             if (imgBox.options.center) {
-                $content.parent().css({'width': naturalWidth, 'height': naturalHeight});
+                $content.parent().css({ 'width': naturalWidth, 'height': naturalHeight });
             }
             $modalWrapper.css('width', naturalWidth);
             placeImg();
@@ -1529,9 +1529,9 @@
 
     }
 
-//-----------------------------End of imgBox plugin------------------------------------------------------------------
+    //-----------------------------End of imgBox plugin------------------------------------------------------------------
 
-//--------------------------------Start of notify plugin--------------------------------------------------
+    //--------------------------------Start of notify plugin--------------------------------------------------
     ssi_modal.notify = function (type, options, callback) {
         var defaults = {
             closeIcon: false,
@@ -1565,7 +1565,7 @@
         }
 
         var generateIcon = function (className) {
-            if (className === '')return '';
+            if (className === '') return '';
             return '<span class="ssi-icon ' + className + '"></span>'
         };
 
@@ -1641,7 +1641,7 @@
             options.title = generateIcon(icon) + ' ' + title;
         }
         if (options.backdrop === true) {
-            options.backdrop = 'byKindShared'
+            options.backdrop = 'byKndShared'
         }
         options.keepContent = false;
         if (options.overrideOther) {
@@ -1650,11 +1650,11 @@
         }
 
         return ssi_modal.createObject(options)
-         .setPluginName('notify').init().show();
+            .setPluginName('notify').init().show();
     };
-//--------------------------------End of notify plugin--------------------------------------------------
+    //--------------------------------End of notify plugin--------------------------------------------------
 
-//--------------------------------Start of jquery selector plugin--------------------------------------------------
+    //--------------------------------Start of jquery selector plugin--------------------------------------------------
 
     $.fn.ssi_modal = function () {
         var opts;
@@ -1698,7 +1698,7 @@
             }
         });
     };
-//--------------------------------End of jquery selector plugin--------------------------------------------------
+    //--------------------------------End of jquery selector plugin--------------------------------------------------
 
     /**
      * Adds animation to an element
@@ -1708,14 +1708,14 @@
      * @return CallExpression
      */
 
-//@author https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Detecting_CSS_animation_support
+    //@author https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Detecting_CSS_animation_support
     function checkAnimationSupport() {
         var animation = false,
-         animationstring = 'animation',
-         keyframeprefix = '',
-         domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
-         pfx = '',
-         elm = document.createElement('div');
+            animationstring = 'animation',
+            keyframeprefix = '',
+            domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
+            pfx = '',
+            elm = document.createElement('div');
 
         if (elm.style.animationName !== undefined) {
             animation = true;
@@ -1766,6 +1766,7 @@
         }
         return value;
     }
+
     return ssi_modal;
 
 }));
