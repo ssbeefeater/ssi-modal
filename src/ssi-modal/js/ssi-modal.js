@@ -196,7 +196,7 @@
      */
     Ssi_modal.prototype.get$modal = function (id) {
         id = id || this.modalId;
-        return this.$modal || $('#' + id);
+        return this.$modal || ( id && $('#' + id));
     };
     /**
      * Returns the title element of the modal.
@@ -271,7 +271,7 @@
      * @returns {JQuery}
      */
     Ssi_modal.prototype.get$backdrop = function () {
-        return this.$backdrop || $('#' + this.backdropId);
+        return this.$backdrop || ( this.backdropId && $('#' + this.backdropId));
     };
 
     var time = null;
