@@ -2,6 +2,7 @@
   "name": "ssi-modal",
   "version": "1.0.28",
   "main": "ssi-modal/js/ssi-modal.js",
+  "types": "types.d.ts",
   "description": "A flexible and powerful modal window.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
