@@ -55,7 +55,7 @@ declare class SsiModal {
    * Returns the modal element of the modal.
    * @description returns the outer element of the modal (ie if we use stack modals will return the window object else will return the modalOuter)
    */
-  get$modal: () => JQuery<HTMLElement>
+  get$modal: () => SsiModalModalElement
   /**
    * Returns the title element of the modal.
    */
@@ -93,10 +93,6 @@ declare class SsiModal {
   setPluginName: (name: string) => this
   setTitle: (title: string | HTMLElement | JQuery<any>) => void
   show: () => this
-  on: <T extends keyof SsiModalEventMap>(
-    event: T,
-    callback: (event: SsiModalEventMap[T]) => void
-  ) => void
 
   // Static methods
   static proto: SsiModal
@@ -223,12 +219,19 @@ export type SsiModalSizeClass =
   | 'full'
   | 'auto'
 
-export interface SsiModalEventMap extends HTMLElementEventMap {
-  'beforeShow.ssi-modal': void
-  'onShow.ssi-modal': void
-  'backdropClose.ssi-modal': void
-  'beforeClose.ssi-modal': void
-  'onClose.ssi-modal': void
+export interface SsiModalModalElement extends JQuery<HTMLElement> {
+  on: JQuery['on'] &
+    (<T extends keyof SsiModalEventMap>(
+      event: T,
+      callback: (event: SsiModalEventMap[T]) => void
+    ) => void)
+}
+export interface SsiModalEventMap {
+  'beforeShow.ssi-modal': JQuery.Event
+  'onShow.ssi-modal': JQuery.Event
+  'backdropClose.ssi-modal': JQuery.Event
+  'beforeClose.ssi-modal': JQuery.Event
+  'onClose.ssi-modal': JQuery.Event
 }
 
 export type SsiModalAnimation =
