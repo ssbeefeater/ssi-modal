@@ -18,7 +18,7 @@
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
     "lwip": "0.0.8",
-    "node-sass": "^3.4.2",
+    "node-sass": "^4.14.1",
     "sprity": "^1.0.8",
     "sprity-sass": "^1.0.4",
     "vinyl-source-stream": "^1.1.0"
