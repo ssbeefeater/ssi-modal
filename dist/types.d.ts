@@ -32,9 +32,7 @@ declare class SsiModal {
    * Generates a button according to the options.
    * @returns The button element.
    */
-  generateButton: (
-    buttonOptions: Partial<SsiModalButton>
-  ) => JQuery<HTMLElement>
+  generateButton: (buttonOptions: Partial<SsiModalButton>) => JQuery<HTMLElement>
   /**
    * Returns the backdrop element of the modal.
    * Or outer element if the modal is stack.
@@ -44,7 +42,7 @@ declare class SsiModal {
    * Returns the buttons element of the modal.
    * @param type - 'left' or 'right'. If not specified, returns all buttons' container.
    */
-  get$buttons: (type?: 'left' | 'right') => JQuery<HTMLElement>
+  get$buttons: (type?: 'buttons' | 'leftButtons' | 'rightButtons') => JQuery<HTMLElement>
   /**
    * Returns the content element of the modal.
    */
@@ -87,19 +85,21 @@ declare class SsiModal {
    */
   setContent: (
     content: string | HTMLElement | JQuery<any>,
-    method?: 'html' | 'append' | 'prepend' = 'html'
+    method?: 'html' | 'append' | 'prepend'
   ) => JQuery<any>
   setIcons: (icons: any) => void
-  setModalHeight: (
-    offset: number,
-    option?: 'height' | 'min-height' | 'max-height'
-  ) => number
+  setModalHeight: (offset: number, option?: 'height' | 'min-height' | 'max-height') => number
   setOptions: (options: Partial<SsiModalOptions>) => this
   setPluginName: (name: string) => this
   setTitle: (title: string | HTMLElement | JQuery<any>) => void
   show: () => this
+  on: <T extends keyof SsiModalEventMap>(
+    event: T,
+    callback: (event: SsiModalEventMap[T]) => void
+  ) => void
 
   // Static methods
+  static proto: SsiModal
   /**
    * Checks if the element is a ssi modal object.
    */
@@ -127,10 +127,6 @@ declare class SsiModal {
    * Remove all the modals from the dom immediately. No callbacks will execute.
    */
   static removeAll: () => void
-  static confirm: (
-    options: Partial<SsiModalOptions>,
-    method: (event: MouseEvent, modal: SsiModal) => void
-  ) => SsiModal
 
   // == Plugins ==
   // dialog
@@ -140,7 +136,11 @@ declare class SsiModal {
   ) => SsiModal
   // confirm
   static confirm: (
-    options: Partial<SsiModalOptions>,
+    options: Partial<SsiModalOptions> &
+      Partial<{
+        okBtn: Pick<SsiModalButton, 'label' | 'className'>
+        cancelBtn: Pick<SsiModalButton, 'label' | 'className'>
+      }>,
     method: (event: MouseEvent, modal: SsiModal) => void
   ) => SsiModal
   // notify
@@ -153,7 +153,7 @@ declare class SsiModal {
         cancelBtn: Pick<SsiModalButton, 'label' | 'className'>
         overrideOther: boolean
       }>,
-    callback: (result: boolean) => void
+    callback?: (result: boolean) => void
   ) => SsiModal
 }
 
@@ -163,8 +163,8 @@ export interface SsiModalOptions {
   backdrop: boolean | ('shared' | 'byKindShared')
   backdropAnimation: SsiModalAnimation
   backdropClassName: string
-  beforeClose: (modal: SsiModal) => void | false
-  beforeShow: (modal: SsiModal) => void | false
+  beforeClose: (modal: SsiModal) => void | boolean
+  beforeShow: (modal: SsiModal) => void | boolean
   bodyElement: boolean
   bodyScroll: boolean
   buttons: Partial<SsiModalButton>[]
@@ -222,6 +222,14 @@ export type SsiModalSizeClass =
   | 'large'
   | 'full'
   | 'auto'
+
+export interface SsiModalEventMap extends HTMLElementEventMap {
+  'beforeShow.ssi-modal': void
+  'onShow.ssi-modal': void
+  'backdropClose.ssi-modal': void
+  'beforeClose.ssi-modal': void
+  'onClose.ssi-modal': void
+}
 
 export type SsiModalAnimation =
   | string
